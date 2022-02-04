@@ -1,17 +1,15 @@
-// let APIURL = '';
+let APIURL = '';
 
-// switch (window.location.hostname) {
-//     // this is the local host name of your React application
-//     case 'localhost' || '127.0.0.1':
-//             //this is base URL of your local server
-//         APIURL = 'http://localhost:5000';
-//         break;
-//     // this is the deployed name of your React application
-//     case 'cbd-berry-client.herokuapp.com':
-//                 //this is the base URL of your deployed server
-//         APIURL = 'https://bwb-redbadgemovie-server.herokuapp.com'
-// }
+switch (window.location.hostname) {
+    // this is the local host name of your React application
+    case 'localhost' || '127.0.0.1':
+            //this is base URL of your local server
+        APIURL = 'http://localhost:5000';
+        break;
+    // this is the deployed name of your React application
+    case 'bwb-redbadgemovie-client.herokuapp.com/':
+                //this is the base URL of your deployed server
+        APIURL = 'https://bwb-redbadgemovie-server.herokuapp.com'
+}
 
-// export default APIURL;
-
-export{}
+export default APIURL;
