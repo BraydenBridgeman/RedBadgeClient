@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // import {
 //     BrowserRouter,
 //     Routes,
@@ -24,22 +24,22 @@ interface MovieAPI {
     moviePoster: string
 }
 
-function getMovies(): Promise<MovieAPI[]> {
-    return fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_API_KEY}`)
-    .then(res => res.json())
-    .then(res => {
-        return res as MovieAPI[]
-    })
-}
-
-getMovies();
-
 function App() {
+    const [movies, setMovies] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
 
+    const getMovieList = async () => {
+        const res = await(await fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchValue}&y=${searchValue}`)).json()
+        console.log(res);
+    } 
+
+    useEffect(() => {
+        getMovieList();
+    }, [searchValue]);
 
    return (
         <div className="App">
-
+            {/* <Search /> */}
         </div>
     );
 }
@@ -47,9 +47,9 @@ function App() {
 export default App;
 
 // {/* <Login />
+//             <Search searchValue={searchValue} setSearchValue={setSearchValue} />
 //             <PublicLists />
 //             <RegisterUser />
-//             <Search />
 //             <SignIn />
 //             <SiteNav />
 //             <UserLists /> */}
