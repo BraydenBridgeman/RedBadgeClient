@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from 'react';
-// import {
-//     BrowserRouter,
-//     Routes,
-//     Route
-// } from 'react-router-dom';
+// import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Login from './Auth/Login';
-import SignIn from './Auth/SignIn';
-import RegisterUser from './Auth/RegisterUser';
+// import Login from './Auth/Login';
+// import RegisterUser from './Auth/RegisterUser';
+import Auth from './Auth/Auth';
 // import PublicLists from './Home/PublicLists';
-import Search from './Components/Search';
-// import SiteNav from './Home/SiteNav';
+// import Search from './Components/Search';
+import SiteNav from './Auth/SiteNav';
 // import UserLists from './Components/UserLists';
-import APIURL from './Helpers/environments';
+// import APIURL from './Helpers/environments';
 
 // interface MovieAPI {
 //     movieName: string,
@@ -31,6 +27,26 @@ function App() {
     const [sessionToken, setSessionToken] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
 
+    // Session Token
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            setSessionToken(localStorage.getItem('token') || '');
+        }
+    }, []);
+
+    const updateToken = (newToken : string) => {
+        console.log('updateToken');
+        localStorage.setItem('token', newToken);
+        setSessionToken(newToken);
+        console.log(sessionToken);
+    }
+
+    const clearToken = () => {
+        localStorage.clear();
+        setSessionToken('');
+    }
+
+    // Calling API for Movies
     const getMovieList = async () => {
         const res = await(await fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchValue}&y=${searchValue}`)).json()
         console.log(res);
@@ -42,16 +58,10 @@ function App() {
 
    return (
         <div className="App">
-            <RegisterUser />
-            <SignIn />
-            <Login />
+            <SiteNav tokenUpdate={updateToken} logout={undefined}/>
+            <Auth tokenUpdate={updateToken}/>
         </div>
     );
 }
 
 export default App;
-
-//             <Search searchValue={searchValue} setSearchValue={setSearchValue} />
-//             <PublicLists />
-//             <SiteNav />
-//             <UserLists /> */}

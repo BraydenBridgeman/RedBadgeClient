@@ -1,64 +1,86 @@
-import React, { useState } from 'react';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import React from 'react';
+import { Form, FormGroup, Input, Button } from 'reactstrap';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './RegisterUser.css';
 
-const RegisterUser = (props: any) => {
-    const [email, setEmail] = useState('');
-    const [userName, setUserName] = useState('');
-    const [password, setPassword] = useState('');
+type Props = {
+    update: any
+}
 
-    let handleSubmit = (event: any) => {
-        event.preventDefault();
-        if (password.length >= 5) {
-            fetch(`https://bwb-redbadgemovie-server.herokuapp.com/createlogin/register`, {
-                method: "POST",
-                body: JSON.stringify({user:{email: email, userName: userName, password: password}}),
-                headers: new Headers ({
-                    'Content-Type' : 'application/json'
-                })
-            }).then(
-                (response) => response.json()
-            ).then(
-                (response) => response.json()
-            ).then((data) => {
-                if (typeof(data.sessionToken) !== 'string') {
-                    alert ('Email or Username already registered.')
-                } else {
-                    props.updateToken(data.sessionToken, data.user.isAdmin);
-                    window.location.href="/"
-                }
-            })
-        } else {
-            alert (`Password must be at least 5 characters (${password.length}).`)
+class RegisterUser extends React.Component<Props, any> {
+    constructor(props: Props) {
+        super(props)
+        this.state = {
+            email: '',
+            username: '',
+            password: '',
+            isAdmin: false,
         }
     }
 
-    return(
-        <div className="userRegister">
-            <h1>Register Account</h1>
-            <Form onSubmit={handleSubmit}>
-                <FormGroup>
-                    <Label htmlFor="email">Email Address:</Label>
-                    <Input onChange={(e) => setEmail(e.target.value)} type="email" name="email" value={email} required/>
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor="userName">UserName:</Label>
-                    <Input onChange={(e) => setUserName(e.target.value)} type="text" name="username" value={userName} required/>
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor="password">Password:</Label>
-                    <Input onChange={(e) => setPassword(e.target.value)} type="password" name="password" value={password} required/>
-                </FormGroup>
-                <Button type="submit">Register Account!</Button>
-            </Form>
-            <div className="switchRegister">
-                <h2>Already registered?</h2>
-                <Button onClick={() => props.setSettingOne(!props.current)}>Login here!</Button>
+    componentDidMount = () => {
+
+    }
+
+    handleSubmit = () => {
+        let userError: number | string
+
+        console.log(this.state.email, this.state.username, this.state.password, this.state.isAdmin)
+        fetch(`https://bwb-redbadgemovie-server.herokuapp.com/createlogin/register`, {
+            method: "POST",
+            body: JSON.stringify({user:{email: this.state.email, username: this.state.username, password: this.state.password, isAdmin: this.state.isAdmin}}),
+            headers: new Headers({
+                "Content-Type" : "application/json",
+            }),
+        }).then((response) => {
+            console.log(`fetch success ${response}`);
+            userError = response.status;
+            if (userError === 500) {
+                this.setState({alert: "Failed to Register User"});
+                console.log(this.state.alert);
+            }
+            return response.json();
+        }).then((data) => {
+            console.log(data);
+            console.log(this.props.update);
+            this.props.update(data.sessionToken);
+        })
+    };
+
+    render() {
+        return(
+            <div className="registerUser">
+                <h1>Register</h1>
+                <Form onSubmit={e => {e.preventDefault(); this.handleSubmit()}}>
+                    <FormGroup>
+                        <Input type="text" 
+                        placeholder="Email"
+                        onChange={(e) => this.setState({email: e.target.value})}
+                        value={this.state.email}
+                        name="email" />
+                    </FormGroup>
+                    <br />
+                    <FormGroup>
+                        <Input type="text" 
+                        placeholder="Username"
+                        onChange={(e) => this.setState({username: e.target.value})}
+                        value={this.state.username}
+                        name="username" />
+                    </FormGroup>
+                    <br />
+                    <FormGroup>
+                        <Input type="password"
+                        placeholder="Password"
+                        onChange={(e) => this.setState({password: e.target.value})}
+                        value={this.state.password}
+                        name="password" />
+                    </FormGroup>
+                    <Button className="Register User" type="submit">Register User!</Button>
+                </Form>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default RegisterUser;
