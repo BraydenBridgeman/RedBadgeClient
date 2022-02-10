@@ -26,10 +26,10 @@ class Auth extends React.Component<Props, State> {
         return (
             <Container className="authContainer">
                 <Row>
-                    <Col md="4">
+                    <Col md="6">
                         <RegisterUser update = {this.props.tokenUpdate}/>
                     </Col>
-                    <Col md="4">
+                    <Col md="6">
                         <Login update = {this.props.tokenUpdate}/>
                     </Col>
                 </Row>

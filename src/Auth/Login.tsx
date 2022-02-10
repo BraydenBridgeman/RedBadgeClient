@@ -30,16 +30,23 @@ class Login extends React.Component<Props, State> {
 
     }
 
-    handleSubmit = () => {
+    handleSubmit = (event : any) => {
+        event.preventDefault();
         fetch(`https://bwb-redbadgemovie-server.herokuapp.com/login/login`, {
             method: "POST",
             body: JSON.stringify({user:{email: this.state.email, username: this.state.username, password: this.state.password}}),
             headers: new Headers({
                 "Content-Type" : "application/json"
             })
-        }).then((response) => response.json()
+        }).then(
+            (response) => response.json()
         ).then((data) => {
-            this.props.update(data.sessionToken);
+            if (typeof(data.sessionToken) !== 'string') {
+                alert(`Invalid username or password`)
+            } else {
+                this.props.update(data.sessionToken);
+                window.location.href='/';
+            }
         })
     }
 
@@ -47,7 +54,7 @@ class Login extends React.Component<Props, State> {
         return(
             <div className='loginUser'>
                 <h1>Login</h1>
-                <Form onSubmit={e => {e.preventDefault(); this.handleSubmit()}}>
+                <Form onSubmit={e => {e.preventDefault(); this.handleSubmit(e)}}>
                     <FormGroup>
                         <Input
                         type="text"

@@ -4,8 +4,6 @@ import React, { useState, useEffect } from 'react';
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// import Login from './Auth/Login';
-// import RegisterUser from './Auth/RegisterUser';
 import Auth from './Auth/Auth';
 // import PublicLists from './Home/PublicLists';
 // import Search from './Components/Search';
@@ -24,6 +22,7 @@ import SiteNav from './Auth/SiteNav';
 function App() {
     const [movies, setMovies] = useState([]);
     const [searchValue, setSearchValue] = useState('');
+    const [publicLists, setPublicLists] = useState([]);
     const [sessionToken, setSessionToken] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
 
@@ -38,12 +37,12 @@ function App() {
         console.log('updateToken');
         localStorage.setItem('token', newToken);
         setSessionToken(newToken);
-        console.log(sessionToken);
     }
 
     const clearToken = () => {
         localStorage.clear();
         setSessionToken('');
+        console.log('clearToken');
     }
 
     // Calling API for Movies
@@ -58,8 +57,8 @@ function App() {
 
    return (
         <div className="App">
-            <SiteNav tokenUpdate={updateToken} logout={undefined}/>
-            <Auth tokenUpdate={updateToken}/>
+            <SiteNav sessionToken={sessionToken} tokenUpdate={updateToken} logout={clearToken}/>
+            <Auth tokenUpdate={updateToken} />
         </div>
     );
 }

@@ -23,28 +23,24 @@ class RegisterUser extends React.Component<Props, any> {
 
     }
 
-    handleSubmit = () => {
-        let userError: number | string
-
+    handleSubmit = (event : any) => {
         console.log(this.state.email, this.state.username, this.state.password, this.state.isAdmin)
+        event.preventDefault();
         fetch(`https://bwb-redbadgemovie-server.herokuapp.com/createlogin/register`, {
             method: "POST",
             body: JSON.stringify({user:{email: this.state.email, username: this.state.username, password: this.state.password, isAdmin: this.state.isAdmin}}),
             headers: new Headers({
                 "Content-Type" : "application/json",
             }),
-        }).then((response) => {
-            console.log(`fetch success ${response}`);
-            userError = response.status;
-            if (userError === 500) {
-                this.setState({alert: "Failed to Register User"});
-                console.log(this.state.alert);
+        }).then(
+            (response) => response.json()
+        ).then((data) => {
+            if (typeof(data.sessionToken) !== 'string') {
+                alert(`Email already registered.`)
+            } else {
+                this.props.update(data.sessionToken);
+                window.location.href='/'
             }
-            return response.json();
-        }).then((data) => {
-            console.log(data);
-            console.log(this.props.update);
-            this.props.update(data.sessionToken);
         })
     };
 
@@ -52,7 +48,7 @@ class RegisterUser extends React.Component<Props, any> {
         return(
             <div className="registerUser">
                 <h1>Register</h1>
-                <Form onSubmit={e => {e.preventDefault(); this.handleSubmit()}}>
+                <Form onSubmit={e => {e.preventDefault(); this.handleSubmit(e)}}>
                     <FormGroup>
                         <Input type="text" 
                         placeholder="Email"
