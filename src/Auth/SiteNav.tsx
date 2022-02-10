@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Navbar, NavbarBrand, Nav, NavItem, Button } from 'reactstrap';
 
+import Search from '../Components/Search';
+
 import './SiteNav.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,26 +11,33 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 interface Props {
     logout: any,
     tokenUpdate: any,
-    sessionToken: string
+    sessionToken: string,
+    setSearchValue: (s : string) => void
 }
 
 class SiteNav extends React.Component<Props, any> {
     constructor(props: Props) {
         super(props)
-        this.toggle = this.toggle.bind(this);
+        this.setIsOpen = this.setIsOpen.bind(this);
         this.state = {
-            isOpen: false
+            isOpen: false,
+            searchOn: false
         };
     }
 
-    toggle = () => {
+    setIsOpen = () => {
         this.setState({
             isOpen: !this.state.isOpen
         });
     }
 
     componentDidMount = () => {
+    }
 
+    setSearchOn = () => {
+        this.setState({
+            searchOn: !this.state.searchOn
+        });
     }
 
     render() {
@@ -37,8 +46,9 @@ class SiteNav extends React.Component<Props, any> {
                 <Navbar bg='light' variant='light' className='navbar' expand='md'>
                     <NavbarBrand className='brand'>RedBadgeProject</NavbarBrand>
                         <Nav className='ml-auto' navbar>
+                            <Search setSearchValue={this.props.setSearchValue} />
                             <NavItem>
-                                <Button className="searchButton">Search</Button>
+                                <Button onClick={this.setSearchOn} className="searchButton">Search</Button>
                             </NavItem>
                             <NavItem>
                                 <Button className="myMovieListsButton">My Movie Lists</Button>
