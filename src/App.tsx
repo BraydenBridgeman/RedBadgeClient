@@ -5,8 +5,8 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Auth from './Auth/Auth';
+import MovieList from './Components/MovieList';
 // import PublicLists from './Home/PublicLists';
-// import Search from './Components/Search';
 import SiteNav from './Auth/SiteNav';
 // import UserLists from './Components/UserLists';
 // import APIURL from './Helpers/environments';
@@ -45,10 +45,43 @@ function App() {
         console.log('clearToken');
     }
 
-    // Calling API for Movies
+    // Calling API for Movie Name, Year Released, Movie Poster, Genre, Short Plot
     const getMovieList = async () => {
+        // First API Call
         const res = await(await fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchValue}`)).json()
         console.log(res);
+
+        // Movie Name
+        const movieName = res.Search[0].Title;
+        console.log(movieName);
+
+        // Year Released
+        const yearReleased = res.Search[0].Year;
+        console.log(yearReleased);
+
+        // Movie Poster
+        const moviePoster = res.Search[0].Poster;
+        console.log(moviePoster);
+
+        // Second API Call
+        const apiRES = await(await fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&t=${movieName}&y=${yearReleased}`)).json()
+        console.log(apiRES);
+
+        // Genre
+        const genre = apiRES.Genre;
+        console.log(genre);
+        
+        // Short Plot
+        const shortPlot = apiRES.Plot;
+        console.log(shortPlot);
+
+        if (res.Search) {
+            setMovies(res.Search);
+        } else if (apiRES.Genre) {
+            setMovies(apiRES.Genre)
+        } else if (apiRES.Plot) {
+            setMovies(apiRES.Plot);
+        }
     }
 
     useEffect(() => {
@@ -59,8 +92,9 @@ function App() {
 
    return (
         <div className="App">
-            <SiteNav setSearchValue={setSearchValue} sessionToken={sessionToken} tokenUpdate={updateToken} logout={clearToken}/>
+            <SiteNav setSearchValue={setSearchValue} sessionToken={sessionToken} tokenUpdate={updateToken} logout={clearToken} />
             <Auth tokenUpdate={updateToken} />
+            <MovieList movies={movies} />
         </div>
     );
 }

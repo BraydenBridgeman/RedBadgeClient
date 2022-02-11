@@ -31,9 +31,6 @@ class SiteNav extends React.Component<Props, any> {
         });
     }
 
-    componentDidMount = () => {
-    }
-
     setSearchOn = () => {
         this.setState({
             searchOn: !this.state.searchOn

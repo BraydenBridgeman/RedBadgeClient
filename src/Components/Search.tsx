@@ -4,7 +4,7 @@ import { Input } from 'reactstrap';
 import './Search.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Search = (props: any) => {
+const Search = (props : any) => {
     return(
         <div className="col col-sm-4">
             <Input className="form-control"
