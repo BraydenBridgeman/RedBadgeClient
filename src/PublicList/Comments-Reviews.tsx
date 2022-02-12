@@ -6,8 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import APIURL from '../Helpers/environments';
 
 type Props = {
-    sessionToken: string,
-    fetch: () => void
+    sessionToken: string
 }
 
 type State = {
@@ -45,7 +44,6 @@ class CommentsReviews extends React.Component<Props, State> {
                 reviewRating: 0,
                 reviewSection: ''
             })
-            this.props.fetch();
         })
     }
 

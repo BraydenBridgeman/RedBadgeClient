@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import HomePage from './Home/HomePage';
 import Auth from './Auth/Auth';
 import MovieList from './Components/MovieList';
+import CommentsReviews from './PublicList/Comments-Reviews';
 // import PublicLists from './Home/PublicLists';
 import SiteNav from './Auth/SiteNav';
 // import UserLists from './Components/UserLists';
@@ -111,6 +112,7 @@ function App() {
 
     return (
         <div className="App">
+            <CommentsReviews sessionToken={sessionToken} />
             <SiteNav setSearchValue={setSearchValue} sessionToken={sessionToken} tokenUpdate={updateToken} logout={clearToken} />
             <HomePage movies={movies} />
             <Auth tokenUpdate={updateToken} />
