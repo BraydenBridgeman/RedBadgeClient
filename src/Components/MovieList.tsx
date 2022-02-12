@@ -27,7 +27,7 @@ const MovieList = (props : any) => {
             {props.movies.map
             ((movie: { Poster: string | undefined; 
             Title: string; 
-            Year: string; 
+            Year: number; 
             Genre: string; 
             Plot: string; }, index: any) => 
             <div>

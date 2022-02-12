@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import HomePage from './Home/HomePage';
 import Auth from './Auth/Auth';
 import MovieList from './Components/MovieList';
 // import PublicLists from './Home/PublicLists';
@@ -111,6 +112,7 @@ function App() {
     return (
         <div className="App">
             <SiteNav setSearchValue={setSearchValue} sessionToken={sessionToken} tokenUpdate={updateToken} logout={clearToken} />
+            <HomePage movies={movies} />
             <Auth tokenUpdate={updateToken} />
             <MovieList targetMovie={targetMovie} movies={movies} />
         </div>
