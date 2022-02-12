@@ -65,7 +65,7 @@ function App() {
             // Movie Poster
             const moviePoster = res.Search[i].Poster;
             console.log(moviePoster);
-    
+            
             // Second API Call
             const apiRES = await(await fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&t=${movieName}&y=${yearReleased}`)).json()
             console.log(apiRES);

@@ -3,6 +3,7 @@ import { Form, FormGroup, Input, Button} from 'reactstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
+import APIURL from '../Helpers/environments';
 
 type Props = {
     update: any
@@ -32,7 +33,7 @@ class Login extends React.Component<Props, State> {
 
     handleSubmit = (event : any) => {
         event.preventDefault();
-        fetch(`https://bwb-redbadgemovie-server.herokuapp.com/login/login`, {
+        fetch(`${APIURL}/login/login`, {
             method: "POST",
             body: JSON.stringify({user:{email: this.state.email, username: this.state.username, password: this.state.password}}),
             headers: new Headers({

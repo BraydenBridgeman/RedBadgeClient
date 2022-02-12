@@ -1,15 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import APIURL from '../Helpers/environments';
 
 const MovieList = (props : any) => {
+
+    // const [allMovies, setAllMovies] = useState([]);
+
+    // useEffect(() => {
+    //     getMovies();
+    // }, [])
+
+    // const getMovies = () => {
+    //     if (props.token !== '') {
+    //         fetch(`${APIURL}/allMovies/getMovies`, {
+    //             method: 'GET',
+    //             headers: new Headers({
+    //                 'Content-Type' : 'application/JSON'
+    //             })
+    //         })
+    //         .then(response => response.json())
+    //         .then(data => setAllMovies(data))
+    //     }
+    // }
+
     return(
         <>
-            {props.movies.map((movie: { Poster: string | undefined; Title: string; Year: string; Genre: string; Plot: string; }, index: any) => <div>
+            {props.movies.map
+            ((movie: { Poster: string | undefined; 
+            Title: string; 
+            Year: string; 
+            Genre: string; 
+            Plot: string; }, index: any) => 
+            <div>
                 <img src={movie.Poster} alt="movie poster"></img>
                 <h2>{movie.Title}</h2>
                 <h4>{movie.Year}</h4>
                 <p>{props.targetMovie.Genre}</p>
                 <p>{props.targetMovie.Plot}</p>
-            </div>)}
+            </div>
+            )}
         </>
     );
 };

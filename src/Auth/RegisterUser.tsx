@@ -3,6 +3,7 @@ import { Form, FormGroup, Input, Button } from 'reactstrap';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './RegisterUser.css';
+import APIURL from '../Helpers/environments';
 
 type Props = {
     update: any
@@ -26,7 +27,7 @@ class RegisterUser extends React.Component<Props, any> {
     handleSubmit = (event : any) => {
         console.log(this.state.email, this.state.username, this.state.password, this.state.isAdmin)
         event.preventDefault();
-        fetch(`https://bwb-redbadgemovie-server.herokuapp.com/createlogin/register`, {
+        fetch(`${APIURL}/createlogin/register`, {
             method: "POST",
             body: JSON.stringify({user:{email: this.state.email, username: this.state.username, password: this.state.password, isAdmin: this.state.isAdmin}}),
             headers: new Headers({
