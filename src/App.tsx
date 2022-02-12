@@ -48,45 +48,45 @@ function App() {
 
     // Calling API for Movie Name, Year Released, Movie Poster, Genre, Short Plot
     const getMovieList = async () => {
-        for(let i = 0; i < 10; i++) {
             // First API Call
             const res = await(await fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchValue}`)).json()
             console.log(res);
-            console.log(i);
     
             // Movie Name
-            const movieName = res.Search[i].Title;
-            console.log(movieName);
+            // const movieName = res.Search[0].Title;
+            // console.log(movieName);
     
-            // Year Released
-            const yearReleased = res.Search[i].Year;
-            console.log(yearReleased);
+            // // Year Released
+            // const yearReleased = res.Search[0].Year;
+            // console.log(yearReleased);
     
-            // Movie Poster
-            const moviePoster = res.Search[i].Poster;
-            console.log(moviePoster);
-            
+            // // Movie Poster
+            // const moviePoster = res.Search[0].Poster;
+            // console.log(moviePoster);
+
             // Second API Call
-            const apiRES = await(await fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&t=${movieName}&y=${yearReleased}`)).json()
-            console.log(apiRES);
-            setTargetMovie(apiRES);
+            // for(let i=0; i<res.Search.length; i++) {
+            //     const apiRES = await(await fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&t=${res.Search[i].Title}&y=${res.Search[i].Year}`)).json()
+            //     console.log(apiRES);
+            // }
+            // setTargetMovie(apiRES);
     
-            // Genre
-            const genre = apiRES.Genre;
-            console.log(genre);
+            // // Genre
+            // const genre = apiRES.Genre;
+            // console.log(genre);
             
-            // Short Plot
-            const shortPlot = apiRES.Plot;
-            console.log(shortPlot);
+            // // Short Plot
+            // const shortPlot = apiRES.Plot;
+            // console.log(shortPlot);
     
             if (res.Search) {
                 setMovies(res.Search);
-            } else if (apiRES.Genre) {
-                setMovies(apiRES.Genre)
-            } else if (apiRES.Plot) {
-                setMovies(apiRES.Plot);
             }
-        }
+            // } else if (apiRES.Genre) {
+            //     setMovies(apiRES.Genre)
+            // } else if (apiRES.Plot) {
+            //     setMovies(apiRES.Plot);
+            // }
     }
 
     useEffect(() => {

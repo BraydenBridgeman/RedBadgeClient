@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import APIURL from '../Helpers/environments';
 
-const MovieList = (props : any) => {
+const MovieList = (props: any) => {
 
     // const [allMovies, setAllMovies] = useState([]);
 
@@ -22,22 +22,32 @@ const MovieList = (props : any) => {
     //     }
     // }
 
-    return(
+    return (
         <>
             {props.movies.map
-            ((movie: { Poster: string | undefined; 
-            Title: string; 
-            Year: string; 
-            Genre: string; 
-            Plot: string; }, index: any) => 
-            <div>
-                <img src={movie.Poster} alt="movie poster"></img>
+                (async (movie: {
+                    Poster: string | undefined;
+                    Title: string;
+                    Year: string;
+                }, index: number) => {
+                    // const apiRES: {
+                    //     Search : {
+                    //         Genre: string,
+                    //         Plot: string
+                    //     }[]
+                    // } = await(await fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&t=${movie.Title}&y=${movie.Year}`)).json()
+                    // console.log(apiRES);
+                    return (
+                        <div>
+                            {/* <img src={movie.Poster} alt="movie poster"></img>
                 <h2>{movie.Title}</h2>
-                <h4>{movie.Year}</h4>
-                <p>{props.targetMovie.Genre}</p>
-                <p>{props.targetMovie.Plot}</p>
-            </div>
-            )}
+                <h4>{movie.Year}</h4> */}
+                            {/* <p>{apiRES.Search[index].Genre}</p>
+                <p>{apiRES.Search[index].Plot}</p> */}
+                        </div>
+                    )
+                }
+                )}
         </>
     );
 };
