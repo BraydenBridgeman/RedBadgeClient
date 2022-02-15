@@ -28,7 +28,7 @@ class CommentsReviews extends React.Component<Props, State> {
     }
 
     handleSubmit = () => {
-        fetch(`${APIURL}/commentReview/comment-review`, { //${APIURL}
+        fetch(`${APIURL}/commentReview/comment-review`, {
             method: 'POST',
             body: JSON.stringify({commentReview: {username: this.state.username, comment: this.state.comment, reviewRating: this.state.reviewRating, reviewSection: this.state.reviewSection}}),
             headers: new Headers({
