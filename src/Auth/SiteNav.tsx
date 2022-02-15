@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Navbar, NavbarBrand, Nav, NavItem, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import Search from '../Components/Search';
 
@@ -41,16 +42,16 @@ class SiteNav extends React.Component<Props, any> {
         return(
             <div className='siteNav'>
                 <Navbar bg='light' variant='light' className='navbar' expand='md'>
-                    <NavbarBrand className='brand'>RedBadgeProject</NavbarBrand>
+                    <NavbarBrand href='/Home' className='brand'>RedBadgeProject</NavbarBrand>
                         <Nav className='ml-auto' navbar>
                             <Search setSearchValue={this.props.setSearchValue} />
-                            <NavItem>
+                            <NavItem href="/Search">
                                 <Button onClick={this.setSearchOn} className="searchButton">Search</Button>
                             </NavItem>
-                            <NavItem>
+                            <NavItem href="/MyMovieList">
                                 <Button className="myMovieListsButton">My Movie Lists</Button>
                             </NavItem>
-                            <NavItem>
+                            <NavItem href="/Register">
                                 <Button className="loginButton">Login / Register</Button>
                             </NavItem>
                             {this.props.sessionToken ? 

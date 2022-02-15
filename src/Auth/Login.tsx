@@ -27,10 +27,6 @@ class Login extends React.Component<Props, State> {
         }
     }
 
-    componentDidMount = () => {
-
-    }
-
     handleSubmit = (event : any) => {
         event.preventDefault();
         fetch(`${APIURL}/login/login`, {

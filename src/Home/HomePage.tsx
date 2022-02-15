@@ -6,14 +6,6 @@ import './HomePage.css';
 
 const HomePage = (props : any) => { 
 
-    const getMoviePosters = async () => {
-        const url = `http://img.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=tt0000001`;
-        console.log(url);
-    }
-    getMoviePosters();
-
-    
-
     return (
         <div>
             <Card className="homePageCard">

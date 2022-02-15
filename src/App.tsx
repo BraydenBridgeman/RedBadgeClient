@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -8,6 +8,7 @@ import HomePage from "./Home/HomePage";
 import Auth from "./Auth/Auth";
 import MovieList from "./Components/MovieList";
 import CommentsReviews from "./PublicList/Comments-Reviews";
+import Search from './Components/Search';
 // import PublicLists from './Home/PublicLists';
 import SiteNav from "./Auth/SiteNav";
 // import UserLists from './Components/UserLists';
@@ -24,7 +25,6 @@ interface MovieAPI {
 function App() {
   const [movies, setMovies] = useState<object[]>([]);
   const [movieArr1, setMovieArr1] = useState<object[]>([]);
-  const [testMovies, setTestMovies] = useState<any>("");
   const [targetMovie, setTargetMovie] = useState({});
   const [searchValue, setSearchValue] = useState("");
   const [publicLists, setPublicLists] = useState([]);
@@ -90,17 +90,14 @@ function App() {
 
   return (
     <div className="App">
-      <CommentsReviews sessionToken={sessionToken} />
-      <SiteNav
-        setSearchValue={setSearchValue}
-        sessionToken={sessionToken}
-        tokenUpdate={updateToken}
-        logout={clearToken}
-      />
-
-      {/* <HomePage movies={movies} />
-      <Auth tokenUpdate={updateToken} />*/}
-      <MovieList targetMovie={targetMovie} movies={movieArr1} />
+      <SiteNav setSearchValue={setSearchValue} sessionToken={sessionToken} tokenUpdate={updateToken} logout={clearToken} />
+      <Routes>
+        <Route path="/Home" element={<HomePage movies={movies} />} />
+        <Route path="/Search" element={<Search setSearchValue={setSearchValue} />} />
+        <Route path="/Comments-Reviews" element={<CommentsReviews sessionToken={sessionToken} />} />
+        <Route path="/Register" element={<Auth tokenUpdate={updateToken} />} />
+        <Route path="/Movies" element={<MovieList targetMovie={targetMovie} movies={movieArr1} />} />
+      </Routes>
     </div>
   );
 }
