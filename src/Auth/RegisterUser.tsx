@@ -42,6 +42,7 @@ class RegisterUser extends React.Component<Props, any> {
                 this.props.update(data.sessionToken);
                 window.location.href='/'
                 alert(`Username and Email has been registered!`)
+                console.log(APIURL);
             }
         })
     };
