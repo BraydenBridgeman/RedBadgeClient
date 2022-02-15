@@ -43,6 +43,7 @@ class Login extends React.Component<Props, State> {
             } else {
                 this.props.update(data.sessionToken);
                 window.location.href='/';
+                alert(`Username Successful!`)
             }
         })
     }
