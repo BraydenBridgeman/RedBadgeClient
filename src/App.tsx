@@ -1,124 +1,108 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 // import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import HomePage from './Home/HomePage';
-import Auth from './Auth/Auth';
-import MovieList from './Components/MovieList';
-import CommentsReviews from './PublicList/Comments-Reviews';
+import HomePage from "./Home/HomePage";
+import Auth from "./Auth/Auth";
+import MovieList from "./Components/MovieList";
+import CommentsReviews from "./PublicList/Comments-Reviews";
 // import PublicLists from './Home/PublicLists';
-import SiteNav from './Auth/SiteNav';
+import SiteNav from "./Auth/SiteNav";
 // import UserLists from './Components/UserLists';
 // import APIURL from './Helpers/environments';
 
 interface MovieAPI {
-    movieName: string,
-    yearReleased: string,
-    genre: string,
-    shortPlot: string,
-    moviePoster: string
+  movieName: string;
+  yearReleased: string;
+  genre: string;
+  shortPlot: string;
+  moviePoster: string;
 }
 
 function App() {
-    const [movies, setMovies] = useState<object[]>([]);
-    const [testMovies, setTestMovies] = useState<any>('');
-    const [targetMovie, setTargetMovie] = useState({});
-    const [searchValue, setSearchValue] = useState('');
-    const [publicLists, setPublicLists] = useState([]);
-    const [sessionToken, setSessionToken] = useState('');
-    const [isAdmin, setIsAdmin] = useState(false);
+  const [movies, setMovies] = useState<object[]>([]);
+  const [movieArr1, setMovieArr1] = useState<object[]>([]);
+  const [testMovies, setTestMovies] = useState<any>("");
+  const [targetMovie, setTargetMovie] = useState({});
+  const [searchValue, setSearchValue] = useState("");
+  const [publicLists, setPublicLists] = useState([]);
+  const [sessionToken, setSessionToken] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
 
-    // Session Token
-    useEffect(() => {
-        if (localStorage.getItem('token')) {
-            setSessionToken(localStorage.getItem('token') || '');
-        }
-    }, []);
-
-    const updateToken = (newToken: string) => {
-        console.log('updateToken');
-        localStorage.setItem('token', newToken);
-        setSessionToken(newToken);
+  // Session Token
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setSessionToken(localStorage.getItem("token") || "");
     }
+  }, []);
 
-    const clearToken = () => {
-        localStorage.clear();
-        setSessionToken('');
-        console.log('clearToken');
-    }
+  const updateToken = (newToken: string) => {
+    console.log("updateToken");
+    localStorage.setItem("token", newToken);
+    setSessionToken(newToken);
+  };
 
-    // Calling API for Movie Name, Year Released, Movie Poster, Genre, Short Plot
-    const getMovieList = async () => {
-        // First API Call
-        const res = await (await fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchValue}`)).json()
-        console.log(res);
+  const clearToken = () => {
+    localStorage.clear();
+    setSessionToken("");
+    console.log("clearToken");
+  };
 
-        // Movie Name
-        // const movieName = res.Search[0].Title;
-        // console.log(movieName);
+  const movieArr: object[] = [];
 
-        // // Year Released
-        // const yearReleased = res.Search[0].Year;
-        // console.log(yearReleased);
+  // Calling API for Movie Name, Year Released, Movie Poster, Genre, Short Plot
+  const getMovieList = async () => {
+    // First API Call
+    try {
+      const res = await (
+        await fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchValue}`)
+      ).json();
 
-        // // Movie Poster
-        // const moviePoster = res.Search[0].Poster;
-        // console.log(moviePoster);
+      console.log(res);
 
-        // Second API Call
-        if (res.Search) {
-            setMovies(res.Search);
-            for (let i = 0; i < movies.length; i++) {
-                const apiRES: {
-                    Genre: string,
-                    Plot: string
-                } = await (await fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&t=${res.Search[i].Title}&y=${res.Search[i].Year}`)).json()
-                console.log(apiRES);
-                // setTestMovies("test movies test");
-                setTestMovies([
-                    ...movies, {
-                        ...movies[i],
-                        Genre: apiRES.Genre,
-                        Plot: apiRES.Plot
-                    }
-                ])
-            }
+      if (res.Search) {
+        setMovies(res.Search);
+        for (let i = 0; i < movies.length; i++) {
+          const apiRes: {
+            Genre: string;
+            Plot: string;
+          } = await (
+            await fetch(
+              `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&t=${res.Search[i].Title}&y=${res.Search[i].Year}`
+            )
+          ).json();
+          movieArr.push({ ...apiRes });
         }
-        // setTargetMovie(apiRES);
-
-        // // Genre
-        // const genre = apiRES.Genre;
-        // console.log(genre);
-
-        // // Short Plot
-        // const shortPlot = apiRES.Plot;
-        // console.log(shortPlot);
-
-        // } else if (apiRES.Genre) {
-        //     setMovies(apiRES.Genre)
-        // } else if (apiRES.Plot) {
-        //     setMovies(apiRES.Plot);
-        // }
+        setMovieArr1(movieArr);
+      }
+    } catch (err) {
+      console.log(err);
     }
+  };
 
-    useEffect(() => {
-        console.log(testMovies);
-        if (searchValue) {
-            getMovieList();
-        }
-    }, [searchValue]);
+  useEffect(() => {
+    if (searchValue) {
+      getMovieList();
+    }
+  }, [searchValue]);
 
-    return (
-        <div className="App">
-            <CommentsReviews sessionToken={sessionToken} />
-            <SiteNav setSearchValue={setSearchValue} sessionToken={sessionToken} tokenUpdate={updateToken} logout={clearToken} />
-            <HomePage movies={movies} />
-            <Auth tokenUpdate={updateToken} />
-            <MovieList targetMovie={targetMovie} movies={movies} />
-        </div>
-    );
+  return (
+    <div className="App">
+      <CommentsReviews sessionToken={sessionToken} />
+      <SiteNav
+        setSearchValue={setSearchValue}
+        sessionToken={sessionToken}
+        tokenUpdate={updateToken}
+        logout={clearToken}
+      />
+
+      {/* <HomePage movies={movies} />
+      <Auth tokenUpdate={updateToken} />*/}
+      <MovieList targetMovie={targetMovie} movies={movieArr1} />
+    </div>
+  );
 }
 
 export default App;
