@@ -28,7 +28,7 @@ class CommentsReviews extends React.Component<Props, State> {
     }
 
     handleSubmit = () => {
-        fetch(`${APIURL}/commentReview/comment-review`, {
+        fetch(`${APIURL}/commentReview/comment-review`, { //${APIURL}
             method: 'POST',
             body: JSON.stringify({commentReview: {username: this.state.username, comment: this.state.comment, reviewRating: this.state.reviewRating, reviewSection: this.state.reviewSection}}),
             headers: new Headers({
@@ -62,7 +62,13 @@ class CommentsReviews extends React.Component<Props, State> {
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor="reviewRating">Review Rating "0-5"</Label>
-                        {/* <Input name="reviewRating" value={this.state.reviewRating} onChange={(e) => this.setState({reviewRating: e.target.value})}/> */}
+                        <Input type="select" name="select" id="exampleSelect">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        </Input>
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor="reviewSection">Review Section</Label>
@@ -77,3 +83,5 @@ class CommentsReviews extends React.Component<Props, State> {
 }
 
 export default CommentsReviews;
+
+//onChange={(e) => this.setState({reviewRating: e.target.value})}

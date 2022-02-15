@@ -94,7 +94,7 @@ function App() {
       <Routes>
         <Route path="/Home" element={<HomePage movies={movies} />} />
         <Route path="/Search" element={<Search setSearchValue={setSearchValue} />} />
-        <Route path="/Comments-Reviews" element={<CommentsReviews sessionToken={sessionToken} />} />
+        <Route path="/Reviews" element={<CommentsReviews sessionToken={sessionToken} />} />
         <Route path="/Register" element={<Auth tokenUpdate={updateToken} />} />
         <Route path="/Movies" element={<MovieList targetMovie={targetMovie} movies={movieArr1} />} />
       </Routes>
