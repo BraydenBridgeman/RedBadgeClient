@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Navbar, NavbarBrand, Nav, NavItem, Button } from 'reactstrap';
+import { Link, NavLink } from 'react-router-dom';
 
 import Search from '../Components/Search';
 
@@ -41,16 +42,22 @@ class SiteNav extends React.Component<Props, any> {
         return(
             <div className='siteNav'>
                 <Navbar bg='light' variant='light' className='navbar' expand='md'>
-                    <NavbarBrand href='/Home' className='brand'>RedBadgeProject</NavbarBrand>
+                    <Link to="/">
+                    <NavbarBrand className='brand'>Red Badge Project</NavbarBrand>
+                    </Link>
                         <Nav className='ml-auto' navbar>
-                            <Search setSearchValue={this.props.setSearchValue} />
-                            <NavItem href="/Search">
+                            <NavItem>
+                            <Link to="/Search">
                                 <Button onClick={this.setSearchOn} className="searchButton">Search</Button>
+                            </Link>
                             </NavItem>
-                            <NavItem href="/MyMovieList">
-                                <Button className="myMovieListsButton">My Movie Lists</Button>
-                            </NavItem>
-                            <NavItem href="/Register">
+                            <Link to="/MyMovieList">
+                                <NavItem>
+                                <Button className="myMovieListButton">My Movie Lists</Button>
+                                </NavItem>
+                            </Link>
+                            <Link to="/Register">
+                            <NavItem>
                                 <Button className="loginButton">Login / Register</Button>
                             </NavItem>
                             {this.props.sessionToken ? 
@@ -58,6 +65,7 @@ class SiteNav extends React.Component<Props, any> {
                                 <Button className="logoutButton" onClick={this.props.logout}>Logout</Button>
                             </NavItem>
                             : null}
+                            </Link>
                         </Nav>
                 </Navbar>
             </div>
