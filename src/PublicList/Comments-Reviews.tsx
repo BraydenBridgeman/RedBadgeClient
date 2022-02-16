@@ -43,7 +43,8 @@ class CommentsReviews extends React.Component<Props, State> {
                 comment: '',
                 reviewRating: 0,
                 reviewSection: ''
-            })
+            }) 
+            alert (`Comment and Review Posted!`)
         })
     }
 
@@ -62,7 +63,7 @@ class CommentsReviews extends React.Component<Props, State> {
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor="reviewRating">Review Rating "0-5"</Label>
-                        <Input type="select" name="select" id="exampleSelect">
+                        <Input type="select" name="select">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -72,7 +73,7 @@ class CommentsReviews extends React.Component<Props, State> {
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor="reviewSection">Review Section</Label>
-                        <Input name="reviewSection" value={this.state.reviewSection} onChange={(e) => this.setState({reviewSection: e.target.value})}/>
+                        <Input type="textarea" name="reviewSection" value={this.state.reviewSection} onChange={(e) => this.setState({reviewSection: e.target.value})}/>
                     </FormGroup>
                     <Button className="commentButton" type="submit">Submit Comment / Review</Button>
                 </Form>
