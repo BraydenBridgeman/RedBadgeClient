@@ -1,0 +1,22 @@
+.searchMovieList {
+    margin: 0px 40px 20px 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.movieListCard {
+    margin-top: 30px;
+    padding: 20px;
+    max-width: 220px;
+    min-width: 200px;
+}
+
+p {
+    font-size: x-large;
+    font-style: italic;
+}
+
+img {
+    max-width: 220px;
+    min-width: none;
+}
