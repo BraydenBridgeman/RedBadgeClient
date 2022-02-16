@@ -28,7 +28,7 @@ class RegisterUser extends React.Component<Props, any> {
         console.log(this.state.email, this.state.username, this.state.password, this.state.isAdmin)
         event.preventDefault();
         console.log(APIURL);
-        fetch(`${APIURL}/createlogin/register`, { //${APIURL}
+        fetch(`${APIURL}/createlogin/register`, { 
             method: "POST",
             body: JSON.stringify({user:{email: this.state.email, username: this.state.username, password: this.state.password, isAdmin: this.state.isAdmin}}),
             headers: new Headers({

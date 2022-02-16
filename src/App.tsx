@@ -24,6 +24,7 @@ interface MovieAPI {
 
 function App() {
   const [movies, setMovies] = useState<object[]>([]);
+  const [favorites, setFavorites] = useState([]);
   const [movieArr1, setMovieArr1] = useState<object[]>([]);
   const [targetMovie, setTargetMovie] = useState({});
   const [searchValue, setSearchValue] = useState("");
@@ -92,7 +93,7 @@ function App() {
     <div className="App">
       <SiteNav setSearchValue={setSearchValue} sessionToken={sessionToken} tokenUpdate={updateToken} logout={clearToken} />
       <Routes>
-        <Route path="/Home" element={<HomePage movies={movies} />} />
+        <Route path="/" element={<HomePage movies={movies} />} />
         <Route path="/Search" element={<Search setSearchValue={setSearchValue} />} />
         <Route path="/Reviews" element={<CommentsReviews sessionToken={sessionToken} />} />
         <Route path="/Register" element={<Auth tokenUpdate={updateToken} />} />

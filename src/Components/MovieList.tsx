@@ -3,24 +3,25 @@ import APIURL from '../Helpers/environments';
 
 const MovieList = (props : any) => {
 
-    // const [allMovies, setAllMovies] = useState([]);
+    const [allMovies, setAllMovies] = useState([]);
 
-    // useEffect(() => {
-    //     getMovies();
-    // }, [])
+    useEffect(() => {
+        getMovies();
+    }, [])
 
-    // const getMovies = () => {
-    //     if (props.token !== '') {
-    //         fetch(`${APIURL}/allMovies/getMovies`, {
-    //             method: 'GET',
-    //             headers: new Headers({
-    //                 'Content-Type' : 'application/JSON'
-    //             })
-    //         })
-    //         .then(response => response.json())
-    //         .then(data => setAllMovies(data))
-    //     }
-    // }
+    const getMovies = () => {
+        if (props.token !== '') {
+            console.log(APIURL);
+            fetch(`${APIURL}/allMovies/getMovies`, {
+                method: 'GET',
+                headers: new Headers({
+                    'Content-Type' : 'application/JSON'
+                })
+            })
+            .then(response => response.json())
+            .then(data => setAllMovies(data))
+        }
+    }
 
     return(
         <>

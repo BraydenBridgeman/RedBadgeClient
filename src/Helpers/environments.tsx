@@ -4,7 +4,7 @@ switch (window.location.hostname) {
     // this is the local host name of your React application
     case 'localhost' || '127.0.0.1':
         //this is base URL of your local server
-        APIURL = 'http://localhost:5000';
+        APIURL = 'http://localhost:3000';
         break;
     // this is the deployed name of your React application
     case 'bwb-redbadgemovie-client.herokuapp.com':
