@@ -91,7 +91,6 @@ function App() {
 
   return (
     <div className="App">
-      <PublicLists />
       <SiteNav setSearchValue={setSearchValue} sessionToken={sessionToken} tokenUpdate={updateToken} logout={clearToken} />
       <Routes>
         <Route path="/" element={<HomePage movies={movies} />} />
