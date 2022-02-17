@@ -6,7 +6,14 @@ import './RegisterUser.css';
 import APIURL from '../Helpers/environments';
 
 type Props = {
-    update: any
+    update: (newToken: string) => void
+}
+
+type State = {
+    email: string,
+    username: string,
+    password: string,
+    isAdmin: boolean
 }
 
 class RegisterUser extends React.Component<Props, any> {
@@ -37,6 +44,7 @@ class RegisterUser extends React.Component<Props, any> {
             (response) => response.json()
         ).then((data) => {
             if (typeof(data.sessionToken) !== 'string') {
+                this.props.update(data.sessionToken);
                 alert(`Email already registered.`)
             } else {
                 this.props.update(data.sessionToken);

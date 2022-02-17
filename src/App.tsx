@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 
 import "./App.css";
@@ -22,7 +23,7 @@ interface MovieAPI {
   moviePoster: string;
 }
 
-function App() {
+function App(this: any) {
   const [movies, setMovies] = useState<object[]>([]);
   const [favorites, setFavorites] = useState([]);
   const [movieArr1, setMovieArr1] = useState<object[]>([]);
@@ -30,7 +31,6 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
   const [publicLists, setPublicLists] = useState([]);
   const [sessionToken, setSessionToken] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
 
   // Session Token
   useEffect(() => {
@@ -51,6 +51,18 @@ function App() {
     console.log("clearToken");
   };
 
+  const adminView = () => {
+    return sessionToken === localStorage.getItem('sessionToken')
+    ?
+    (
+      <Router>
+        <SiteNav sessionToken={sessionToken} logout={clearToken} tokenUpdate={updateToken} setSearchValue={setSearchValue} />
+      </Router>
+    ) : (
+      <Auth tokenUpdate={updateToken} />
+    )
+  }
+
   const movieArr: object[] = [];
 
   // Calling API for Movie Name, Year Released, Movie Poster, Genre, Short Plot
@@ -59,38 +71,38 @@ function App() {
     try {
       const res = await (
         await fetch(`https://www.omdbapi.com/?apikey=e0e1a4b&s=${searchValue}`)
-      ).json();
-
-      console.log(res);
-
-      if (res.Search) {
-        setMovies(res.Search);
-        for (let i = 0; i < movies.length; i++) {
-          const apiRes: {
-            Genre: string;
-            Plot: string;
-          } = await (
-            await fetch(
-              `https://www.omdbapi.com/?apikey=e0e1a4b&t=${res.Search[i].Title}&y=${res.Search[i].Year}`
-            )
-          ).json();
-          movieArr.push({ ...apiRes });
-        }
-        setMovieArr1(movieArr);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    if (searchValue) {
-      getMovieList();
-    }
-  }, [searchValue]);
-
-  return (
-    <div className="App">
+        ).json();
+        
+        console.log(res);
+        
+        if (res.Search) {
+          setMovies(res.Search);
+          for (let i = 0; i < movies.length; i++) {
+            const apiRes: {
+              Genre: string;
+              Plot: string;
+            } = await (
+              await fetch(
+                `https://www.omdbapi.com/?apikey=e0e1a4b&t=${res.Search[i].Title}&y=${res.Search[i].Year}`
+                )
+                ).json();
+                movieArr.push({ ...apiRes });
+              }
+              setMovieArr1(movieArr);
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        
+        useEffect(() => {
+          if (searchValue) {
+            getMovieList();
+          }
+        }, [getMovieList]);
+        
+        return (
+          <div className="App">
       <SiteNav setSearchValue={setSearchValue} sessionToken={sessionToken} tokenUpdate={updateToken} logout={clearToken} />
       <Routes>
         <Route path="/" element={<HomePage movies={movies} />} />

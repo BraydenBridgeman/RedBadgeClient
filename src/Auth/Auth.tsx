@@ -7,7 +7,7 @@ import Login from './Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 type Props = {
-    tokenUpdate: any
+    tokenUpdate: any,
 }
 
 type State = {
@@ -30,7 +30,7 @@ class Auth extends React.Component<Props, State> {
                         <RegisterUser update = {this.props.tokenUpdate}/>
                     </Col>
                     <Col md="6">
-                        <Login update = {this.props.tokenUpdate}/>
+                        <Login update={this.props.tokenUpdate} />
                     </Col>
                 </Row>
             </Container>
