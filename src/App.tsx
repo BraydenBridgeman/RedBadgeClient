@@ -58,7 +58,7 @@ function App() {
     // First API Call
     try {
       const res = await (
-        await fetch(`https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchValue}`)
+        await fetch(`https://www.omdbapi.com/?apikey=e0e1a4b&s=${searchValue}`)
       ).json();
 
       console.log(res);
@@ -71,7 +71,7 @@ function App() {
             Plot: string;
           } = await (
             await fetch(
-              `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&t=${res.Search[i].Title}&y=${res.Search[i].Year}`
+              `https://www.omdbapi.com/?apikey=e0e1a4b&t=${res.Search[i].Title}&y=${res.Search[i].Year}`
             )
           ).json();
           movieArr.push({ ...apiRes });

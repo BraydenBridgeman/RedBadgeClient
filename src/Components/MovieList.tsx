@@ -11,7 +11,6 @@ const MovieList = (props: any) => {
     useEffect(() => {
         const getMovies = () => {
             if (props.token !== '') {
-                console.log(APIURL);
                 fetch(`${APIURL}/allMovies/getMovies`, {
                     method: 'GET',
                     headers: new Headers({

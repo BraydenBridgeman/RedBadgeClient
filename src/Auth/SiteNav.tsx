@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Navbar, NavbarBrand, Nav, NavItem, Button } from 'reactstrap';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Search from '../Components/Search';
 
