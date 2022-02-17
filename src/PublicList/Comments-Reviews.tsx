@@ -12,7 +12,7 @@ type Props = {
 type State = {
     username: string,
     comment: string,
-    reviewRating: number,
+    reviewRating: number | string,
     reviewSection: string
 }
 
@@ -64,7 +64,7 @@ class CommentsReviews extends React.Component<Props, State> {
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor="reviewRating">Review Rating "0-5"</Label>
-                        <Input type="select" name="select">
+                        <Input type="select" name="select" onChange={(e) => this.setState({reviewRating: e.target.value})}>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>

@@ -97,7 +97,7 @@ function App() {
         <Route path="/Search" element={[<Search setSearchValue={setSearchValue} /> , <MovieList targetMovie={targetMovie} movies={movieArr1} />]} />
         <Route path="/Reviews" element={<CommentsReviews sessionToken={sessionToken} />} />
         <Route path="/Register" element={<Auth tokenUpdate={updateToken} />} />
-        <Route path="/MyMovieList" element={<PublicLists sessionToken={sessionToken} />} /> 
+        <Route path="/MyMovieList" element={[<PublicLists sessionToken={sessionToken} /> , <MovieList targetMovie={targetMovie} movies={movieArr1} />]} /> 
       </Routes>
     </div>
   );
