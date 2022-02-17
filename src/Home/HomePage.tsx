@@ -21,27 +21,27 @@ const HomePage = (props : any) => {
                 <Row xs="1" sm="2" md="4">
                     <img className="homePageImage"
                         alt="Movie Poster"
-                        src={`http://img.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=tt7657566`}
+                        src={`https://img.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=tt7657566`}
                     />
                     <img className="homePageImage"
                         alt="Movie Poster"
-                        src={`http://img.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=tt11271038`}
+                        src={`https://img.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=tt11271038`}
                     />
                     <img className="homePageImage"
                         alt="Movie Poster"
-                        src={`http://img.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=tt11466222`}
+                        src={`https://img.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=tt11466222`}
                     />
                     <img className="homePageImage"
                         alt="Movie Poster"
-                        src={`http://img.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=tt5834426`}
+                        src={`https://img.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=tt5834426`}
                     />
                     <img className="homePageImage"
                         alt="Movie Poster"
-                        src={`http://img.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=tt10872600`}
+                        src={`https://img.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=tt10872600`}
                     />
                     <img className="homePageImage"
                         alt="Movie Poster"
-                        src={`http://img.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=tt6856242`}
+                        src={`https://img.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=tt6856242`}
                     />
                 </Row>
             </Card>
