@@ -9,7 +9,7 @@ import Auth from "./Auth/Auth";
 import MovieList from "./Components/MovieList";
 import CommentsReviews from "./PublicList/Comments-Reviews";
 import Search from './Components/Search';
-// import PublicLists from './Home/PublicLists';
+import PublicLists from "./PublicList/PublicLists";
 import SiteNav from "./Auth/SiteNav";
 // import UserLists from './Components/UserLists';
 // import APIURL from './Helpers/environments';
@@ -91,6 +91,7 @@ function App() {
 
   return (
     <div className="App">
+      <PublicLists />
       <SiteNav setSearchValue={setSearchValue} sessionToken={sessionToken} tokenUpdate={updateToken} logout={clearToken} />
       <Routes>
         <Route path="/" element={<HomePage movies={movies} />} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 
 import './Comments-Reviews.css';
@@ -26,6 +26,7 @@ class CommentsReviews extends React.Component<Props, State> {
             reviewSection: ''
         }
     }
+
 
     handleSubmit = () => {
         fetch(`${APIURL}/commentReview/comment-review`, {
@@ -80,7 +81,6 @@ class CommentsReviews extends React.Component<Props, State> {
             </div>
         )
     }
-
 }
 
 export default CommentsReviews;
