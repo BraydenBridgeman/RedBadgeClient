@@ -17,8 +17,8 @@ const AddMovies = (props: any) => {
         let moviePoster = props.movies.Poster;
         let genre = props.movies.Genre;
         let shortPlot = props.movies.Plot;
-        console.log(movies);
-        console.log(movieName, yearReleased, moviePoster, genre, shortPlot, props.sessionToken);
+        console.log(props.movies);
+        console.log(movieName, yearReleased, moviePoster, genre, shortPlot);
 
         fetch(`${APIURL}/movies/movies`, {
             method: "POST",
@@ -32,8 +32,7 @@ const AddMovies = (props: any) => {
                 }
             }),
             headers: new Headers({
-                'Content-Type': 'application/JSON',
-                'Authorization': `Bearer ${props.sessionToken}`,
+                'Content-Type': 'application/JSON'
             })
         }).then((response) => response.json())
     }

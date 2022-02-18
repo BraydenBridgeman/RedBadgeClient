@@ -22,7 +22,7 @@ const MovieList = (props: any) => {
             }
         }
         getMovies();
-    }, [allMovies, props.token])
+    }, [props.token])
 
 
     return (
@@ -30,7 +30,7 @@ const MovieList = (props: any) => {
             <Row xs="1" sm="2" md="4">
                 <Col className="bg-light border" xs="6">
                     <Card className="movieListCard" style={{ width: "100%" }}>
-                        {props.allMovies.map
+                        {props.movies.map
                             ((movie: {
                                 Poster: string | undefined;
                                 Title: string;

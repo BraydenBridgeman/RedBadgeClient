@@ -50,6 +50,7 @@ class UserLists extends React.Component<Props, State> {
         console.log(this.state.selectedOption);
     }
 
+
     handleSubmit = () => {
         fetch(`${APIURL}/userList/list`, {
             method: 'POST',
@@ -96,7 +97,6 @@ class UserLists extends React.Component<Props, State> {
                             checked={this.state.selectedOption === "No"}
                             onChange={this.onChangeValue} />  No
                     </FormGroup>
-                    <MovieList />
                     <FormGroup>
                         <Label htmlFor="toWatch">Watch Later? </Label>
                         <br />

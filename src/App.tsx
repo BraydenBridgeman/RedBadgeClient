@@ -17,10 +17,10 @@ import SiteNav from "./Auth/SiteNav";
 
 function App(this: any) {
   const [movies, setMovies] = useState<object[]>([]);
+  const [movieToAdd, setMoviesToAdd] = useState('')
   const [movieArr1, setMovieArr1] = useState<object[]>([]);
   const [targetMovie, setTargetMovie] = useState({});
   const [searchValue, setSearchValue] = useState("");
-  const [publicLists, setPublicLists] = useState([]);
   const [sessionToken, setSessionToken] = useState("");
 
   // Session Token
@@ -96,7 +96,7 @@ function App(this: any) {
         <Route path="/" element={<HomePage movies={movies} />} />
         <Route path="/Search" element={[<Search setSearchValue={setSearchValue} /> , <MovieList targetMovie={targetMovie} movies={movieArr1} />]} />
         <Route path="/Register" element={<Auth tokenUpdate={updateToken} />} />
-        <Route path="/MyMovieList" element={[<UserIndex />, <UserLists sessionToken={sessionToken} />]} /> 
+        <Route path="/MyMovieList" element={<UserLists sessionToken={sessionToken} />} /> 
       </Routes>
     </div>
   );
