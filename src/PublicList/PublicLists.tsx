@@ -30,8 +30,6 @@ const PublicLists = (props: any) => {
             }
         }
         getMovies()
-        props.getMovieList();
-        console.log(props.getMovieList());
         console.log(getMovies());
     }, [props, props.sessionToken])
 
@@ -39,7 +37,7 @@ const PublicLists = (props: any) => {
     return (
         <div className="publicList">
             <Row>
-                {myList.map(result => {
+                {myList.map(() => {
                     return (
                         <Col>
                             <Card className="listCard" key={props.idNumber}>
@@ -54,7 +52,7 @@ const PublicLists = (props: any) => {
                             </Card>
                             <br />
                             <Card className="commentCard">
-                                <CommentsReviews sessionToken={props.sessionToken} />
+                                {/* <CommentsReviews sessionToken={props.sessionToken} /> */}
                             </Card>
                         </Col>
                     )

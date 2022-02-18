@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 
 import './Comments-Reviews.css';
@@ -52,7 +52,7 @@ class CommentsReviews extends React.Component<Props, State> {
     render() {
         return(
             <div className="comments-review">
-                <h1>Leave a comment / review</h1>
+                <h1>Leave a comment / review about this user list</h1>
                 <Form inline onSubmit={e => { e.preventDefault(); this.handleSubmit() }}>
                     <FormGroup>
                         <Label htmlFor="username">Username</Label>
@@ -84,5 +84,3 @@ class CommentsReviews extends React.Component<Props, State> {
 }
 
 export default CommentsReviews;
-
-//onChange={(e) => this.setState({reviewRating: e.target.value})}

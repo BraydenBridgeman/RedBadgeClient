@@ -44,7 +44,7 @@ const MovieList = (props: any) => {
                                     <h4>{movie.Year}</h4>
                                     <p>{movie.Genre}</p>
                                     <p>{movie.Plot}</p>
-                                    <AddMovies movies = {props.movies} token={props.sessionToken} movieAdd = {props.movieToAdd} />
+                                    <AddMovies movies={props.movies} token={props.sessionToken} movieAdd={props.movieToAdd} />
                                 </div>
                             )}
                     </Card>

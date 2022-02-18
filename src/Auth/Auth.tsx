@@ -25,7 +25,7 @@ class Auth extends React.Component<Props, State> {
     }
 
     static getDerivedStateFromError(error: any) {
-        return { userError: true }
+        return { userError: true}
     }
 
     componentDidCatch(error: any, errorInfo: any) {
@@ -40,15 +40,16 @@ class Auth extends React.Component<Props, State> {
 
     render() {
         if (this.state.userError) {
-            return <h1>This page is not viewable.</h1>;
+            return <h1>This page is not viewable.</h1>
         }
         return (
             <Container className="authContainer">
                 <Row>
                     <Col md="6">
-                        {this.state.toggle ?
-                            <RegisterUser update={this.props.tokenUpdate} toggleWork={this.toggleWork} /> :
-                            <Login update={this.props.tokenUpdate} toggleWork={this.toggleWork} />}
+                        <RegisterUser update={this.props.tokenUpdate} toggleWork={this.toggleWork} />
+                    </Col>
+                    <Col md="6">
+                        <Login update={this.props.tokenUpdate} toggleWork={this.toggleWork} />
                     </Col>
                 </Row>
             </Container>

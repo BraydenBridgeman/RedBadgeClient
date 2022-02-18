@@ -10,7 +10,7 @@ import Auth from "./Auth/Auth";
 import MovieList from "./Components/MovieList";
 import CommentsReviews from "./PublicList/Comments-Reviews";
 import Search from './Components/Search';
-import PublicLists from "./PublicList/PublicLists";
+import UserList from "./Components/UserLists";
 import SiteNav from "./Auth/SiteNav";
 // import UserLists from './Components/UserLists';
 // import APIURL from './Helpers/environments';
@@ -66,15 +66,13 @@ function App(this: any) {
   const movieArr: object[] = [];
 
   // Calling API for Movie Name, Year Released, Movie Poster, Genre, Short Plot
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getMovieList = async () => {
     // First API Call
     try {
       const res = await (
         await fetch(`https://www.omdbapi.com/?apikey=e0e1a4b&s=${searchValue}`)
-        ).json();
-        
-        console.log(res);
-        
+        ).json();        
         if (res.Search) {
           setMovies(res.Search);
           for (let i = 0; i < movies.length; i++) {
@@ -99,7 +97,7 @@ function App(this: any) {
           if (searchValue) {
             getMovieList();
           }
-        }, [getMovieList]);
+        }, [getMovieList, searchValue]);
         
         return (
           <div className="App">
@@ -107,9 +105,9 @@ function App(this: any) {
       <Routes>
         <Route path="/" element={<HomePage movies={movies} />} />
         <Route path="/Search" element={[<Search setSearchValue={setSearchValue} /> , <MovieList targetMovie={targetMovie} movies={movieArr1} />]} />
-        <Route path="/Reviews" element={<CommentsReviews sessionToken={sessionToken} />} />
+        {/* <Route path="/Reviews" element={<CommentsReviews sessionToken={sessionToken} />} /> */}
         <Route path="/Register" element={<Auth tokenUpdate={updateToken} />} />
-        <Route path="/MyMovieList" element={[<PublicLists sessionToken={sessionToken} /> , <MovieList targetMovie={targetMovie} movies={movieArr1} />]} /> 
+        <Route path="/MyMovieList" element={[<UserList sessionToken={sessionToken} /> , <MovieList targetMovie={targetMovie} movies={movieArr1} />]} /> 
       </Routes>
     </div>
   );

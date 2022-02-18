@@ -11,7 +11,7 @@ const AddMovies = (props: any) => {
     let movieAdd = (id: number) => {
         let arrayId = id - 1;
         let movie = props.movies[arrayId];
-        let movieName = movie.Title;
+        let movieName = props.movie.Title;
         let yearReleased = movie.Year;
         let moviePoster = movie.Poster;
         let genre = movie.Genre;
