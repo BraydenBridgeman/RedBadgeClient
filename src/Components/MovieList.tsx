@@ -38,13 +38,13 @@ const MovieList = (props: any) => {
                                 Genre: string;
                                 Plot: string;
                             }, _index: any) =>
-                                <div>
+                                <div key={_index}>
                                     <img style={{ width: "250px"}} src={movie.Poster} alt="movie poster"></img>
                                     <h2>{movie.Title}</h2>
                                     <h4>{movie.Year}</h4>
                                     <p>{movie.Genre}</p>
                                     <p>{movie.Plot}</p>
-                                    <AddMovies movies={props.movies} token={props.sessionToken} movieAdd={props.movieToAdd} />
+                                    <AddMovies movies={movie} token={props.sessionToken} movieAdd={props.movieToAdd} />
                                 </div>
                             )}
                     </Card>

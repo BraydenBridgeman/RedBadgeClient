@@ -10,6 +10,7 @@ import CommentsReviews from '../PublicList/Comments-Reviews';
 // import UpdateComment from './UpdateComment';
 // import UpdateList from './UpdateList';
 import APIURL from '../Helpers/environments';
+import MovieList from './MovieList';
 
 type Props = {
     sessionToken: string
@@ -23,7 +24,7 @@ type State = {
     selectedOption: string
 }
 
-class UserList extends React.Component<Props, State> {
+class UserLists extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
         this.state = {
@@ -95,6 +96,7 @@ class UserList extends React.Component<Props, State> {
                             checked={this.state.selectedOption === "No"}
                             onChange={this.onChangeValue} />  No
                     </FormGroup>
+                    <MovieList />
                     <FormGroup>
                         <Label htmlFor="toWatch">Watch Later? </Label>
                         <br />
@@ -125,4 +127,4 @@ class UserList extends React.Component<Props, State> {
     }
 }
 
-export default UserList;
+export default UserLists;

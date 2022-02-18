@@ -9,14 +9,14 @@ import './AddMovies.css';
 const AddMovies = (props: any) => {
 
     let movieAdd = (id: number) => {
+        console.log(props.movies.Title);
         let arrayId = id - 1;
         let movie = props.movies[arrayId];
-        let movieName = props.movie.Title;
-        let yearReleased = movie.Year;
-        let moviePoster = movie.Poster;
-        let genre = movie.Genre;
-        let shortPlot = movie.Plot;
-        console.log(movie);
+        let movieName = props.movies.Title;
+        let yearReleased = props.movies.Year;
+        let moviePoster = props.movies.Poster;
+        let genre = props.movies.Genre;
+        let shortPlot = props.movies.Plot;
         console.log(movieName, yearReleased, moviePoster, genre, shortPlot, props.sessionToken);
 
         fetch(`${APIURL}/movies/movies`, {
