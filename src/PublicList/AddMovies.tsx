@@ -11,12 +11,13 @@ const AddMovies = (props: any) => {
     let movieAdd = (id: number) => {
         console.log(props.movies.Title);
         let arrayId = id - 1;
-        let movie = props.movies[arrayId];
+        let movies = props.movies[arrayId];
         let movieName = props.movies.Title;
         let yearReleased = props.movies.Year;
         let moviePoster = props.movies.Poster;
         let genre = props.movies.Genre;
         let shortPlot = props.movies.Plot;
+        console.log(movies);
         console.log(movieName, yearReleased, moviePoster, genre, shortPlot, props.sessionToken);
 
         fetch(`${APIURL}/movies/movies`, {
@@ -31,7 +32,7 @@ const AddMovies = (props: any) => {
                 }
             }),
             headers: new Headers({
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/JSON',
                 'Authorization': `Bearer ${props.sessionToken}`,
             })
         }).then((response) => response.json())
