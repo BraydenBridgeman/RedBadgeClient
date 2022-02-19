@@ -11,7 +11,7 @@ import MovieList from "./Components/MovieList";
 import UserIndex from "./Components/UserIndex";
 import CommentsReviews from "./PublicList/Comments-Reviews";
 import Search from './Components/Search';
-import UserLists from "./Components/UserLists";
+import CreateList from "./Components/CreateList";
 import SiteNav from "./Auth/SiteNav";
 // import APIURL from './Helpers/environments';
 
@@ -96,7 +96,7 @@ function App(this: any) {
         <Route path="/" element={<HomePage movies={movies} />} />
         <Route path="/Search" element={[<Search setSearchValue={setSearchValue} /> , <MovieList targetMovie={targetMovie} movies={movieArr1} />]} />
         <Route path="/Register" element={<Auth tokenUpdate={updateToken} />} />
-        <Route path="/MyMovieList" element={<UserLists sessionToken={sessionToken} />} /> 
+        {/* <Route path="/MyMovieList" element={<CreateList sessionToken={sessionToken} fetch={this.fetch} listOff={this.listOff} />} /> */}
       </Routes>
     </div>
   );

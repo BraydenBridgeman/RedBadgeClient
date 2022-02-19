@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './UserIndex.css';
-import UserLists from './UserLists';
+// import UserLists from './CreateList';
 
 const UserIndex = (props: any) => {
     useEffect(() => {
@@ -10,7 +10,7 @@ const UserIndex = (props: any) => {
 
     return (
         <div>
-            <UserLists sessionToken={props.sessionToken} />
+            {/* <UserLists sessionToken={props.sessionToken} /> */}
         </div>
     );
 }
