@@ -20,7 +20,7 @@ const AddMovies = (props: any) => {
         console.log(props.movies);
         console.log(movieName, yearReleased, moviePoster, genre, shortPlot);
 
-        fetch(`${APIURL}/movies/movies`, {
+        fetch(`${APIURL}/allMovies/movies`, {
             method: "POST",
             body: JSON.stringify({
                 movies: {

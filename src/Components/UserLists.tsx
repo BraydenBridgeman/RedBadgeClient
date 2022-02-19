@@ -52,7 +52,7 @@ class UserLists extends React.Component<Props, State> {
 
 
     handleSubmit = () => {
-        fetch(`${APIURL}/userList/list`, {
+        fetch(`${APIURL}/movieList/list`, {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/JSON',

@@ -18,7 +18,7 @@ const PublicLists = (props: any) => {
     useEffect(() => {
         const getMovies = () => {
             if (props.sessionToken !== '') {
-                fetch(`${APIURL}/publicview`, {
+                fetch(`${APIURL}/publicview/`, {
                     method: 'GET',
                     headers: new Headers({
                         'Content-Type': 'application/JSON',
