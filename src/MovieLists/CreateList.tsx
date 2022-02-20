@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, Row, Col, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import APIURL from '../Helpers/environments';
 
@@ -36,46 +36,35 @@ class CreateList extends React.Component<Props, State> {
                     listName: '',
                     movieTitle: ''
                 })
+                alert(`Movie List Created!`)
             })
     }
 
     render() {
         return (
-            <div>
+            <div className="comments-review">
+                <h1>Create your Movie List</h1>
                 <Form inline onSubmit={(e) => { e.preventDefault(); this.handleSubmit(); }} className="listForm">
-                    <Row>
-                        <Col>
-                            <h1>Create your Movie List</h1>
-                        </Col>
-                        <br />
-                        <br />
-                        <Row>
-                            <Col>
-                                <Input name="listName"
-                                    value={this.state.listName}
-                                    onChange={(e) => this.setState({ listName: e.target.value })}
-                                    placeholder="List Name" />
-                            </Col>
-                        </Row>
-                        <br />
-                        <br />
-                        <br />
-                        <Row>
-                            <Col>
-                                <Input name="movieTitle"
-                                    value={this.state.movieTitle}
-                                    onChange={(e) => this.setState({ movieTitle: e.target.value })}
-                                    placeholder="Movie Titles" />
-                            </Col>
-                        </Row>
-                        <br />
-                        <br />
-                        <br />
-                        <Col>
-                            <Button id="Btns" type='submit'>Submit!</Button>
-                        </Col>
-                    </Row>
+                    <FormGroup>
+                        <Label htmlFor="listname">List Name</Label>
+                        <Input type="textarea" name="listname" value={this.state.listName}
+                            onChange={(e) => this.setState({
+                                listName: e.target.value
+                            })}
+                            placeholder="User List Name" />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label htmlFor="movieTitle">Movie Titles</Label>
+                        <Input type="textarea" name="movieTitle" value={this.state.movieTitle}
+                            onChange={(e) => this.setState({ movieTitle: e.target.value })}
+                            placeholder="Add your watchlist of movie titles here" />
+                    </FormGroup>
+                    <br />
+                    <Button id="navbtns" type="submit">Create List</Button>
                 </Form>
+                <br />
+                <br />
+                <br />
             </div>
         )
     }
