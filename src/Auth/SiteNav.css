@@ -1,23 +1,36 @@
 .navbar {
-    
+    padding-bottom: 25px;
+    padding-top: 25px;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(25,25,25,1) 72%, rgba(59,59,59,1) 100%);
 }
 
 .brand {
-
+    font-size: xx-large;
+    color: white;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding-left: 20px;
 }
 
-.ml-auto {
-
+#navitem {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    color: white;
+    margin-left: 25px;
+    margin-right: 25px;
 }
 
-.navitem {
-
+#navbtns {
+    font-size: large;
+    font-weight: 500;
+    color: black;
+    margin-left: 25px;
+    margin-right: 25px;
+    background-color: #ffffff;
+    border-radius: 10px;
 }
 
-.signInButton {
-
-}
-
-.logoutButton {
-
+#navbtns:hover {
+    background-color: #616161;
 }

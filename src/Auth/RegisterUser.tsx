@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Input, Button } from 'reactstrap';
+import { Form, FormGroup, Input, Button, FormText, List, FormFeedback } from 'reactstrap';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './RegisterUser.css';
@@ -14,7 +14,9 @@ type State = {
     email: string,
     username: string,
     password: string,
-    isAdmin: boolean
+    isAdmin: boolean,
+    passMessage: string,
+    isMounted: boolean
 }
 
 class RegisterUser extends React.Component<Props, State> {
@@ -24,13 +26,17 @@ class RegisterUser extends React.Component<Props, State> {
             email: '',
             username: '',
             password: '',
-            isAdmin: false
+            isAdmin: false,
+            passMessage: '',
+            isMounted: false
         }
     }
 
     componentDidMount = () => {
-
-    }
+        this.setState({
+            isMounted: true,
+        });
+    };
 
     handleSubmit = (event: any) => {
         console.log(this.state.email, this.state.username, this.state.password, this.state.isAdmin)
@@ -55,13 +61,24 @@ class RegisterUser extends React.Component<Props, State> {
         })
     };
 
+    passwordVerification = () => {
+        console.log('valid password');
+        return (
+            this.state.password.length > 5 &&
+            this.state.password.match(/[A-Z]/) !== null &&
+            this.state.password.match(/[a-z]/) !== null &&
+            this.state.password.match(/[0-9]/) !== null
+        );
+    }
+
     render() {
         return (
-            <div className="registerUser">
+            <div id="loginUser">
                 <h1>Register</h1>
                 <Form onSubmit={e => { e.preventDefault(); this.handleSubmit(e) }}>
                     <FormGroup>
                         <Input type="text"
+                            id="loginInput"
                             placeholder="Email"
                             onChange={(e) => this.setState({ email: e.target.value })}
                             value={this.state.email}
@@ -70,6 +87,7 @@ class RegisterUser extends React.Component<Props, State> {
                     <br />
                     <FormGroup>
                         <Input type="text"
+                            id="loginInput"
                             placeholder="Username"
                             onChange={(e) => this.setState({ username: e.target.value })}
                             value={this.state.username}
@@ -78,12 +96,26 @@ class RegisterUser extends React.Component<Props, State> {
                     <br />
                     <FormGroup>
                         <Input type="password"
+                            id="loginInput"
                             placeholder="Password"
                             onChange={(e) => this.setState({ password: e.target.value })}
                             value={this.state.password}
                             name="password" />
                     </FormGroup>
-                    <Button className="Register User" type="submit">Register User!</Button>
+                    <Button id="navbtns" className="Register User" type="submit">Register User!</Button>
+                    <FormText>
+                        <List type="unstyled" id="passwordREQ">
+                            <li>Password requirements:</li>
+                            <li>At least 5 characters</li>
+                            <li>A mixture of both uppercase and lowercase letters.</li>
+                            <li>A mixture of letters and numbers</li>
+                            <li>NO SPECIAL CHARACTERS ALLOWED</li>
+                        </List>
+                    </FormText>
+                    <FormFeedback>
+                        {" "}
+                        {this.state.passMessage !== "" ? <p className="passMessage">{this.state.passMessage}</p> : ""}
+                    </FormFeedback>
                 </Form>
             </div>
         )

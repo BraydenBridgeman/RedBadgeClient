@@ -4,7 +4,7 @@ import { Card, CardBody, CardSubtitle, CardTitle, Row } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 
-const HomePage = (props : any) => { 
+const HomePage = (props: any) => {
 
     return (
         <div>
@@ -18,32 +18,34 @@ const HomePage = (props : any) => {
                         Find Movies. Add them to your List.
                     </CardSubtitle>
                 </CardBody>
-                <Row xs="1" sm="2" md="4">
-                    <img className="homePageImage"
-                        alt="Movie Poster"
-                        src={'http://img.omdbapi.com/?apikey=e0e1a4b&i=tt7657566'}
-                    />
-                    <img className="homePageImage"
-                        alt="Movie Poster"
-                        src={'http://img.omdbapi.com/?apikey=e0e1a4b&i=tt11271038'}
-                    />
-                    <img className="homePageImage"
-                        alt="Movie Poster"
-                        src={'http://img.omdbapi.com/?apikey=e0e1a4b&i=tt11466222'}
-                    />
-                    <img className="homePageImage"
-                        alt="Movie Poster"
-                        src={'http://img.omdbapi.com/?apikey=e0e1a4b&i=tt5834426'}
-                    />
-                    <img className="homePageImage"
-                        alt="Movie Poster"
-                        src={'http://img.omdbapi.com/?apikey=e0e1a4b&i=tt10872600'}
-                    />
-                    <img className="homePageImage"
-                        alt="Movie Poster"
-                        src={'http://img.omdbapi.com/?apikey=e0e1a4b&i=tt6856242'}
-                    />
-                </Row>
+                <div className="moviePosterDiv">
+                    <Row xs="1" sm="2" md="4">
+                        <img className="homePageImage"
+                            alt="Movie Poster"
+                            src={'http://img.omdbapi.com/?apikey=e0e1a4b&i=tt7657566'}
+                        />
+                        <img className="homePageImage"
+                            alt="Movie Poster"
+                            src={'http://img.omdbapi.com/?apikey=e0e1a4b&i=tt11271038'}
+                        />
+                        <img className="homePageImage"
+                            alt="Movie Poster"
+                            src={'http://img.omdbapi.com/?apikey=e0e1a4b&i=tt11466222'}
+                        />
+                        <img className="homePageImage"
+                            alt="Movie Poster"
+                            src={'http://img.omdbapi.com/?apikey=e0e1a4b&i=tt5834426'}
+                        />
+                        <img className="homePageImage"
+                            alt="Movie Poster"
+                            src={'http://img.omdbapi.com/?apikey=e0e1a4b&i=tt10872600'}
+                        />
+                        <img className="homePageImage"
+                            alt="Movie Poster"
+                            src={'http://img.omdbapi.com/?apikey=e0e1a4b&i=tt6856242'}
+                        />
+                    </Row>
+                </div>
             </Card>
         </div>
     )

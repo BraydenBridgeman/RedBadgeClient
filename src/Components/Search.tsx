@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Search = (props : any) => {
     return(
-        <div className="col col-sm-4">
+        <div id="searchDiv">
             <Input className="form-control"
             value={props.value}
             onChange={(e) => props.setSearchValue(e.target.value)}

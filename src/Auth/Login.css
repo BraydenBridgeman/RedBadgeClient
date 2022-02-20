@@ -1,7 +1,14 @@
-.loginUser {
-
+#loginUser {
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 50px;
 }
 
-.loginButton {
-    
+#loginInput {
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
 }

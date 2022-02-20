@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from "../Assets/movie-reel-logo.png";
 
 import { Navbar, NavbarBrand, Nav, NavItem, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
@@ -89,28 +90,36 @@ class SiteNav extends React.Component<Props, State> {
         }
         return (
             <div className='siteNav'>
-                <Navbar bg='light' variant='light' className='navbar' expand='md'>
+                <Navbar className='navbar' expand='md'>
                     <Link to="/">
-                        <NavbarBrand className='brand'>Red Badge Project</NavbarBrand>
+                        <NavbarBrand
+                            className='brand'>
+                            <img src={logo}
+                                width="70"
+                                height="50"
+                                alt="Movie Reel Home Page Button" />
+                            Movie Watchers
+                        </NavbarBrand>
                     </Link>
                     <Nav className='ml-auto' navbar>
-                        <NavItem>
+                        <NavItem id="navitem">
                             <Link to="/Search">
-                                <Button onClick={this.setSearchOn} className="searchButton">Search</Button>
+                                <Button onClick={this.setSearchOn} id="navbtns">Search</Button>
                             </Link>
                         </NavItem>
                         <Link to="/MyMovieList">
-                            <NavItem>
-                                <Button className="myMovieListButton" onClick={() => { this.listOn() }}>My Movie Lists</Button>
+                            <NavItem id="navitem">
+                                <Button id="navbtns" onClick={() => { this.listOn() }}>My Movie Lists</Button>
                             </NavItem>
                         </Link>
                         <Link to="/Register">
-                            <NavItem>
-                                <Button className="loginButton" onClick={() => { this.loginOn() }}>Login / Register</Button>
+                            <NavItem id="navitem">
+                                <Button id="navbtns" onClick={() => { this.loginOn() }}>Login / Register</Button>
                             </NavItem>
+                            <br />
                             {this.props.sessionToken ?
-                                <NavItem>
-                                    <Button className="logoutButton" onClick={this.props.logout}>Logout</Button>
+                                <NavItem id="navitem">
+                                    <Button id="navbtns" onClick={this.props.logout}>Logout</Button>
                                 </NavItem>
                                 : null}
                         </Link>

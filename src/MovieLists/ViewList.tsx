@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Card, Col, Row } from 'reactstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './PublicLists.css';
+import './ViewList.css';
 
-import AddMovies from './AddMovies';
-import CommentsReviews from './Comments-Reviews';
+import CommentsReviews from '../PublicList/Comments-Reviews';
 // import DeleteComment from './DeleteComment';
 // import UpdateComment from './UpdateComment';
 // import UpdateList from './UpdateList';
@@ -35,24 +34,23 @@ const PublicLists = (props: any) => {
 
 
     return (
-        <div className="publicList">
+        <div className="viewList">
             <Row>
                 {myList.map(() => {
                     return (
                         <Col>
                             <Card className="listCard" key={props.idNumber}>
-                                <AddMovies />
-                                <img className="moviePoster" src={props.movie.Poster} alt="movie poster"></img>
+                                <img className="moviePoster" src={props.movies.Poster} alt="movie poster"></img>
                                 <div>
-                                    <h2 className="movieName">{props.movie.Title}</h2>
-                                    <p className="movieYear">{props.movie.Year}</p>
-                                    <p className="movieGenre">{props.movie.Genre}</p>
-                                    <p className="moviePlot">{props.movie.Plot}</p>
+                                    <h2 className="movieName">{props.movies.Title}</h2>
+                                    <p className="movieYear">{props.movies.Year}</p>
+                                    <p className="movieGenre">{props.movies.Genre}</p>
+                                    <p className="moviePlot">{props.movies.Plot}</p>
                                 </div>
                             </Card>
                             <br />
                             <Card className="commentCard">
-                                {/* <CommentsReviews sessionToken={props.sessionToken} /> */}
+                                <CommentsReviews sessionToken={props.sessionToken} />
                             </Card>
                         </Col>
                     )

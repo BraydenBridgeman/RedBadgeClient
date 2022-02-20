@@ -14,7 +14,8 @@ type State = {
     email: string,
     username: string,
     password: string,
-    sessionToken: any
+    sessionToken: string,
+    isMounted: boolean
 }
 
 class Login extends React.Component<Props, State> {
@@ -24,9 +25,16 @@ class Login extends React.Component<Props, State> {
             email: "",
             username: "",
             password: "",
-            sessionToken: ""
+            sessionToken: "",
+            isMounted: false
         }
     }
+
+    componentDidMount = () => {
+        this.setState({
+            isMounted: true,
+        });
+    };
 
     handleSubmit = (event: any) => {
         event.preventDefault();
@@ -51,11 +59,12 @@ class Login extends React.Component<Props, State> {
 
     render() {
         return (
-            <div className='loginUser'>
+            <div id='loginUser'>
                 <h1>Login</h1>
                 <Form onSubmit={e => { e.preventDefault(); this.handleSubmit(e) }}>
                     <FormGroup>
                         <Input
+                            id="loginInput"
                             type="text"
                             placeholder="Email"
                             onChange={(e) => this.setState({ email: e.target.value })}
@@ -64,6 +73,7 @@ class Login extends React.Component<Props, State> {
                     <br />
                     <FormGroup>
                         <Input
+                            id="loginInput"
                             type="text"
                             placeholder="Username"
                             onChange={(e) => this.setState({ username: e.target.value })}
@@ -72,12 +82,13 @@ class Login extends React.Component<Props, State> {
                     <br />
                     <FormGroup>
                         <Input
+                            id="loginInput"
                             type="password"
                             placeholder="Password"
                             onChange={(e) => this.setState({ password: e.target.value })}
                             value={this.state.password} />
                     </FormGroup>
-                    <Button className="loginButton" type="submit">Login!</Button>
+                    <Button id="navbtns" type="submit">Login!</Button>
                 </Form>
             </div>
         )

@@ -38,7 +38,7 @@ const AddMovies = (props: any) => {
     }
 
     return (
-        <Button className="addMoviesButton" onClick={() => movieAdd(props.movieToAdd)}>
+        <Button id="navbtns" onClick={() => movieAdd(props.movieToAdd)}>
             Add Movie to My List
         </Button>
     )

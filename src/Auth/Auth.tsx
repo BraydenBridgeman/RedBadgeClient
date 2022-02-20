@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'reactstrap'
 
 import RegisterUser from './RegisterUser';
 import Login from './Login';
+import './Auth.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -25,7 +26,7 @@ class Auth extends React.Component<Props, State> {
     }
 
     static getDerivedStateFromError(error: any) {
-        return { userError: true}
+        return { userError: true }
     }
 
     componentDidCatch(error: any, errorInfo: any) {
@@ -43,16 +44,16 @@ class Auth extends React.Component<Props, State> {
             return <h1>This page is not viewable.</h1>
         }
         return (
-            <Container className="authContainer">
-                <Row>
-                    <Col md="6">
-                        <RegisterUser update={this.props.tokenUpdate} toggleWork={this.toggleWork} />
-                    </Col>
-                    <Col md="6">
-                        <Login update={this.props.tokenUpdate} toggleWork={this.toggleWork} />
-                    </Col>
-                </Row>
-            </Container>
+            <div id="authBody">
+                    <Row xs="1" sm="2" md="4">
+                        <Col md="6">
+                            <RegisterUser update={this.props.tokenUpdate} toggleWork={this.toggleWork} />
+                        </Col>
+                        <Col md="6">
+                            <Login update={this.props.tokenUpdate} toggleWork={this.toggleWork} />
+                        </Col>
+                    </Row>
+            </div>
         )
     }
 }

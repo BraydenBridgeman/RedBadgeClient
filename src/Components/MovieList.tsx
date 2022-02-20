@@ -29,7 +29,7 @@ const MovieList = (props: any) => {
         <div className="searchMovieList">
             <Row xs="1" sm="2" md="4">
                 <Col className="bg-light border" xs="6">
-                    <Card className="movieListCard" style={{ width: "100%" }}>
+                    <Card className="movieListCard">
                         {props.movies.map
                             ((movie: {
                                 Poster: string | undefined;
