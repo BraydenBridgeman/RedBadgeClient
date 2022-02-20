@@ -13,6 +13,7 @@ import Search from './Components/Search';
 import CreateList from "./MovieLists/CreateList";
 import SiteNav from "./Auth/SiteNav";
 import ViewList from './MovieLists/ViewList';
+import Footer from "./Home/Footer";
 // import APIURL from './Helpers/environments';
 
 function App(this: any) {
@@ -87,6 +88,7 @@ function App(this: any) {
         <Route path="/Register" element={<Auth tokenUpdate={updateToken} />} />
         <Route path="/MyMovieList" element={[<CreateList sessionToken={sessionToken} />, <CommentsReviews sessionToken={sessionToken} />]} />
       </Routes>
+      <Footer />
     </div>
   );
 }
