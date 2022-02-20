@@ -1,10 +1,24 @@
 import React from 'react';
 import { Card, CardBody, CardSubtitle, CardTitle, Row } from 'reactstrap';
+import APIURL from '../Helpers/environments';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 
 const HomePage = (props: any) => {
+
+    const displayMovieLists = () => {
+        fetch(`${APIURL}/publicview/`, {
+            method: 'GET',
+            body: JSON.stringify({ userList: { listName: props.this.state.listName, movieTitle: props.this.state.movieTItle } }),
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        }).then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+            })
+    }
 
     return (
         <div>

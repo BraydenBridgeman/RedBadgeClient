@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import APIURL from '../Helpers/environments';
-import { Row, Col, Card } from 'reactstrap';
+import { Row, Container, Card } from 'reactstrap';
 
 import AddMovies from '../PublicList/AddMovies';
+import './MovieList.css';
 
 const MovieList = (props: any) => {
 
@@ -27,8 +28,8 @@ const MovieList = (props: any) => {
 
     return (
         <div className="searchMovieList">
-            <Row xs="1" sm="2" md="4">
-                <Col className="bg-light border" xs="6">
+            <Row>
+                <Container className="container">
                     <Card className="movieListCard">
                         {props.movies.map
                             ((movie: {
@@ -39,16 +40,18 @@ const MovieList = (props: any) => {
                                 Plot: string;
                             }, _index: any) =>
                                 <div key={_index}>
-                                    <img style={{ width: "250px"}} src={movie.Poster} alt="movie poster"></img>
+                                    <img style={{ width: "250px" }} src={movie.Poster} alt="movie poster"></img>
                                     <h2>{movie.Title}</h2>
                                     <h4>{movie.Year}</h4>
-                                    <p>{movie.Genre}</p>
-                                    <p>{movie.Plot}</p>
+                                    <p id="genre"><span>{movie.Genre}</span></p>
+                                    <p id="plot"><span>{movie.Plot}</span></p>
                                     <AddMovies movies={movie} token={props.sessionToken} movieAdd={props.movieToAdd} />
+                                    <br />
+                                    <br />
                                 </div>
                             )}
                     </Card>
-                </Col>
+                </Container>
             </Row>
         </div>
     );

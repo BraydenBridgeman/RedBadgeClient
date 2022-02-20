@@ -32,9 +32,14 @@ const AddMovies = (props: any) => {
                 }
             }),
             headers: new Headers({
-                'Content-Type': 'application/JSON'
+                'Content-Type': 'application/JSON',
+                'Authorization': `Bearer ${props.sessionToken}`
             })
         }).then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            })
+        alert(`Movie Added!`)
     }
 
     return (

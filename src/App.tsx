@@ -43,18 +43,6 @@ function App(this: any) {
     console.log("clearToken");
   };
 
-  const adminView = () => {
-    return sessionToken === localStorage.getItem('sessionToken')
-      ?
-      (
-        <Router>
-          <SiteNav sessionToken={sessionToken} logout={clearToken} tokenUpdate={updateToken} setSearchValue={setSearchValue} />
-        </Router>
-      ) : (
-        <Auth tokenUpdate={updateToken} />
-      )
-  }
-
   const movieArr: object[] = [];
 
   // Calling API for Movie Name, Year Released, Movie Poster, Genre, Short Plot

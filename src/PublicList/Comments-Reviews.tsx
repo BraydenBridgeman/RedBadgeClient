@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import './Comments-Reviews.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,7 +17,7 @@ type State = {
 }
 
 class CommentsReviews extends React.Component<Props, State> {
-    constructor (props : Props) {
+    constructor(props: Props) {
         super(props)
         this.state = {
             username: '',
@@ -31,50 +31,50 @@ class CommentsReviews extends React.Component<Props, State> {
     handleSubmit = () => {
         fetch(`${APIURL}/commentReview/comment-review`, {
             method: 'POST',
-            body: JSON.stringify({commentReview: {username: this.state.username, comment: this.state.comment, reviewRating: this.state.reviewRating, reviewSection: this.state.reviewSection}}),
+            body: JSON.stringify({ commentReview: { username: this.state.username, comment: this.state.comment, reviewRating: this.state.reviewRating, reviewSection: this.state.reviewSection } }),
             headers: new Headers({
-                'Content-Type' : 'application/JSON',
-                'Authorization' : `Bearer ${this.props.sessionToken}`
+                'Content-Type': 'application/JSON',
+                'Authorization': `Bearer ${this.props.sessionToken}`
             })
         }).then((res) => res.json())
-        .then((data) => {
-            console.log(data);
-            this.setState({
-                username: '',
-                comment: '',
-                reviewRating: 0,
-                reviewSection: ''
-            }) 
-            alert (`Comment and Review Posted!`)
-        })
+            .then((data) => {
+                console.log(data);
+                this.setState({
+                    username: '',
+                    comment: '',
+                    reviewRating: 0,
+                    reviewSection: ''
+                })
+                alert(`Comment and Review Posted!`)
+            })
     }
 
     render() {
-        return(
+        return (
             <div className="comments-review">
                 <h1>Leave a comment / review about this user list</h1>
                 <Form inline onSubmit={e => { e.preventDefault(); this.handleSubmit() }}>
                     <FormGroup>
                         <Label htmlFor="username">Username</Label>
-                        <Input name="username" value={this.state.username} onChange={(e) => this.setState({username: e.target.value})}/>
+                        <Input name="username" value={this.state.username} onChange={(e) => this.setState({ username: e.target.value })} />
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor="comment">Comment</Label>
-                        <Input name="comment" value={this.state.comment} onChange={(e) => this.setState({comment: e.target.value})}/>
+                        <Input name="comment" value={this.state.comment} onChange={(e) => this.setState({ comment: e.target.value })} />
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor="reviewRating">Review Rating "0-5"</Label>
-                        <Input type="select" name="select" onChange={(e) => this.setState({reviewRating: e.target.value})}>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <Input type="select" name="select" onChange={(e) => this.setState({ reviewRating: e.target.value })}>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
                         </Input>
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor="reviewSection">Review Section</Label>
-                        <Input type="textarea" name="reviewSection" value={this.state.reviewSection} onChange={(e) => this.setState({reviewSection: e.target.value})}/>
+                        <Input type="textarea" name="reviewSection" value={this.state.reviewSection} onChange={(e) => this.setState({ reviewSection: e.target.value })} />
                     </FormGroup>
                     <Button className="commentButton" type="submit">Submit Comment / Review</Button>
                 </Form>

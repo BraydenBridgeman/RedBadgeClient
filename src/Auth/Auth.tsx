@@ -45,14 +45,14 @@ class Auth extends React.Component<Props, State> {
         }
         return (
             <div id="authBody">
-                    <Row xs="1" sm="2" md="4">
-                        <Col md="6">
-                            <RegisterUser update={this.props.tokenUpdate} toggleWork={this.toggleWork} />
-                        </Col>
-                        <Col md="6">
-                            <Login update={this.props.tokenUpdate} toggleWork={this.toggleWork} />
-                        </Col>
-                    </Row>
+                <Row xs="1" sm="2" md="4">
+                    <Col md="6">
+                        <RegisterUser update={this.props.tokenUpdate} toggleWork={this.toggleWork} />
+                    </Col>
+                    <Col md="6">
+                        <Login update={this.props.tokenUpdate} toggleWork={this.toggleWork} />
+                    </Col>
+                </Row>
             </div>
         )
     }
