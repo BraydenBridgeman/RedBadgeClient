@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 
 import "./App.css";
@@ -12,18 +11,18 @@ import CommentsReviews from "./PublicList/Comments-Reviews";
 import Search from './Components/Search';
 import CreateList from "./MovieLists/CreateList";
 import SiteNav from "./Auth/SiteNav";
-import ViewList from './MovieLists/ViewList';
 import Footer from "./Home/Footer";
 // import APIURL from './Helpers/environments';
 
 function App(this: any) {
   const [movies, setMovies] = useState<object[]>([]);
-  const [movieToAdd, setMoviesToAdd] = useState('')
   const [movieArr1, setMovieArr1] = useState<object[]>([]);
-  const [targetMovie, setTargetMovie] = useState({});
+  const [targetMovie, setTargetMovie] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [sessionToken, setSessionToken] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
+  const [createList, setCreateList] = useState([]);
+  const [commentReview, setCommentReview] = useState([]);
 
   // Session Token
   useEffect(() => {
@@ -83,10 +82,10 @@ function App(this: any) {
     <div className="App">
       <SiteNav setSearchValue={setSearchValue} sessionToken={sessionToken} tokenUpdate={updateToken} logout={clearToken} />
       <Routes>
-        <Route path="/" element={<HomePage movies={movies} />} />
-        <Route path="/Search" element={[<Search setSearchValue={setSearchValue} />, <MovieList targetMovie={targetMovie} movies={movieArr1} />]} />
+        <Route path="/" element={<HomePage targetMovie={targetMovie} createList={createList} commentReview={commentReview} movies={movies} />} />
+        <Route path="/Search" element={[<Search setSearchValue={setSearchValue} />, <MovieList setTargetMovie={setTargetMovie} movies={movieArr1} />]} />
         <Route path="/Register" element={<Auth tokenUpdate={updateToken} />} />
-        <Route path="/MyMovieList" element={[<CreateList sessionToken={sessionToken} />, <CommentsReviews sessionToken={sessionToken} />]} />
+        <Route path="/MyMovieList" element={[<CreateList setCreateList={setCreateList} createList={createList} sessionToken={sessionToken} />, <CommentsReviews setCommentReview={setCommentReview} sessionToken={sessionToken} />]} />
       </Routes>
       <Footer />
     </div>

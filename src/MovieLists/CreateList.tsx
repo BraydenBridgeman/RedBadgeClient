@@ -2,14 +2,17 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import APIURL from '../Helpers/environments';
+import UpdateList from './UpdateList';
 
 type Props = {
-    sessionToken: string
+    sessionToken: string,
+    setCreateList: any,
+    createList: any
 }
 
 type State = {
     listName: string,
-    movieTitle: string,
+    movieTitle: string
 }
 
 class CreateList extends React.Component<Props, State> {
@@ -22,7 +25,7 @@ class CreateList extends React.Component<Props, State> {
     }
 
     handleSubmit = () => {
-        fetch(`${APIURL}/movieList/list`, {
+        fetch(`${APIURL}/movieList/list/`, {
             method: 'POST',
             body: JSON.stringify({ userList: { listName: this.state.listName, movieTitle: this.state.movieTitle } }),
             headers: new Headers({
@@ -32,9 +35,11 @@ class CreateList extends React.Component<Props, State> {
         }).then((res) => res.json())
             .then((data) => {
                 console.log(data);
+                this.props.setCreateList(data);
+                console.log(data.movieTitle);
                 this.setState({
-                    listName: '',
-                    movieTitle: ''
+                    listName: this.state.listName,
+                    movieTitle: this.state.movieTitle
                 })
                 alert(`Movie List Created!`)
             })
@@ -61,6 +66,7 @@ class CreateList extends React.Component<Props, State> {
                     </FormGroup>
                     <br />
                     <Button id="navbtns" type="submit">Create List</Button>
+                    {/* <UpdateList sessionToken={this.props.sessionToken} createList={this.props.createList} setCreateList={this.props.setCreateList} /> */}
                 </Form>
                 <br />
                 <br />

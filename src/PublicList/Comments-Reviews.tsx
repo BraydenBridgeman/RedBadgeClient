@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import APIURL from '../Helpers/environments';
 
 type Props = {
-    sessionToken: string
+    sessionToken: string,
+    setCommentReview: any
 }
 
 type State = {
@@ -37,11 +38,12 @@ class CommentsReviews extends React.Component<Props, State> {
         }).then((res) => res.json())
             .then((data) => {
                 console.log(data);
+                this.props.setCommentReview(data);
                 this.setState({
-                    username: '',
-                    comment: '',
-                    reviewRating: 0,
-                    reviewSection: ''
+                    username: this.state.username,
+                    comment: this.state.comment,
+                    reviewRating: this.state.reviewRating,
+                    reviewSection: this.state.reviewSection
                 })
                 alert(`Comment and Review Posted!`)
             })
@@ -50,7 +52,7 @@ class CommentsReviews extends React.Component<Props, State> {
     render() {
         return (
             <div className="comments-review">
-                <h1>Leave a comment / review about this user list</h1>
+                <h1>Comment and Review This List</h1>
                 <Form inline onSubmit={e => { e.preventDefault(); this.handleSubmit(); }}>
                     <FormGroup>
                         <Label htmlFor="username">Username</Label>
@@ -59,7 +61,7 @@ class CommentsReviews extends React.Component<Props, State> {
                     <FormGroup>
                         <Label htmlFor="comment">Comment</Label>
                         <Input type="textarea"
-                        name="comment" value={this.state.comment} onChange={(e) => this.setState({ comment: e.target.value })} />
+                            name="comment" value={this.state.comment} onChange={(e) => this.setState({ comment: e.target.value })} />
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor="reviewRating">Review Rating "0-5"</Label>

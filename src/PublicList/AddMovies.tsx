@@ -1,53 +1,73 @@
 import React from 'react';
 import { Button } from 'reactstrap';
-
 import APIURL from '../Helpers/environments';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './AddMovies.css';
 
-const AddMovies = (props: any) => {
+type Props = {
+    sessionToken: string,
+    setTargetMovie: any,
+    movies: any
+}
 
-    let movieAdd = (id: number) => {
-        console.log(props.movies.Title);
-        let arrayId = id - 1;
-        let movies = props.movies[arrayId];
-        let movieName = props.movies.Title;
-        let yearReleased = props.movies.Year;
-        let moviePoster = props.movies.Poster;
-        let genre = props.movies.Genre;
-        let shortPlot = props.movies.Plot;
+type State = {
+    movieName: string,
+    yearReleased: number | string,
+    genre: string,
+    shortPlot: string,
+    moviePoster: string
+}
+
+class AddMovies extends React.Component<Props, State> {
+    constructor(props: Props) {
+        super(props)
+        this.state = {
+            movieName: props.movies.Title,
+            yearReleased: props.movies.Year,
+            genre: props.movies.Genre,
+            shortPlot: props.movies.Plot,
+            moviePoster: props.movies.Poster
+        }
         console.log(props.movies);
-        console.log(movieName, yearReleased, moviePoster, genre, shortPlot);
+    }
 
+    addMoviesToList = () => {
         fetch(`${APIURL}/allMovies/movies`, {
-            method: "POST",
+            method: 'POST',
             body: JSON.stringify({
                 movies: {
-                    movieName: movieName,
-                    yearReleased: yearReleased,
-                    genre: genre,
-                    shortPlot: shortPlot,
-                    moviePoster: moviePoster
+                    movieName: this.state.movieName,
+                    yearReleased: this.state.yearReleased,
+                    genre: this.state.genre,
+                    shortPlot: this.state.shortPlot,
+                    moviePoster: this.state.moviePoster
                 }
             }),
             headers: new Headers({
                 'Content-Type': 'application/JSON',
-                'Authorization': `Bearer ${props.sessionToken}`
+                'Authorization': `Bearer ${this.props.sessionToken}`
             })
-        }).then((response) => response.json())
+        }).then((res) => res.json())
             .then((data) => {
                 console.log(data);
+                this.props.setTargetMovie(data);
+                this.setState({
+                    movieName: this.state.movieName,
+                    yearReleased: this.state.yearReleased,
+                    genre: this.state.genre,
+                    shortPlot: this.state.shortPlot,
+                    moviePoster: this.state.moviePoster
+                })
+                alert(`Movie Added to List!`)
             })
-        alert(`Movie Added!`)
     }
 
-    return (
-        <Button id="navbtns" onClick={() => movieAdd(props.movieToAdd)}>
-            Add Movie to My List
-        </Button>
-    )
-
+    render() {
+        return (
+            <Button id="navbtns" onClick={e => { e.preventDefault(); this.addMoviesToList(); }}>
+                Add Movie to My List
+            </Button>
+        )
+    }
 }
 
 export default AddMovies;

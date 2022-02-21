@@ -61,21 +61,11 @@ class RegisterUser extends React.Component<Props, State> {
         })
     };
 
-    passwordVerification = () => {
-        console.log('valid password');
-        return (
-            this.state.password.length > 5 &&
-            this.state.password.match(/[A-Z]/) !== null &&
-            this.state.password.match(/[a-z]/) !== null &&
-            this.state.password.match(/[0-9]/) !== null
-        );
-    }
-
     render() {
         return (
             <div id="loginUser">
                 <h1>Register</h1>
-                <Form onSubmit={e => { e.preventDefault(); this.handleSubmit(e) }}>
+                <Form onSubmit={e => { e.preventDefault(); this.handleSubmit(e); }}>
                     <FormGroup>
                         <Input type="text"
                             id="loginInput"
@@ -103,19 +93,6 @@ class RegisterUser extends React.Component<Props, State> {
                             name="password" />
                     </FormGroup>
                     <Button id="navbtns" className="Register User" type="submit">Register User!</Button>
-                    <FormText>
-                        <List type="unstyled" id="passwordREQ">
-                            <li>Password requirements:</li>
-                            <li>At least 5 characters</li>
-                            <li>A mixture of both uppercase and lowercase letters.</li>
-                            <li>A mixture of letters and numbers</li>
-                            <li>NO SPECIAL CHARACTERS ALLOWED</li>
-                        </List>
-                    </FormText>
-                    <FormFeedback>
-                        {" "}
-                        {this.state.passMessage !== "" ? <p className="passMessage">{this.state.passMessage}</p> : ""}
-                    </FormFeedback>
                 </Form>
             </div>
         )
