@@ -2,7 +2,8 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import APIURL from '../Helpers/environments';
-// import UpdateList from './UpdateList';
+import UpdateList from './UpdateList';
+import DeleteList from './DeleteList';
 
 type Props = {
     sessionToken: string,
@@ -66,7 +67,8 @@ class CreateList extends React.Component<Props, State> {
                     </FormGroup>
                     <br />
                     <Button id="navbtns" type="submit">Create List</Button>
-                    {/* <UpdateList sessionToken={this.props.sessionToken} createList={this.props.createList} setCreateList={this.props.setCreateList} /> */}
+                    {/* <UpdateList sessionToken={this.props.sessionToken} createList={this.props.createList} setCreateList={this.props.setCreateList} />
+                    <DeleteList sessionToken={this.props.sessionToken} createList={this.props.createList} setCreateList={this.props.setCreateList} /> */}
                 </Form>
                 <br />
                 <br />

@@ -2,6 +2,8 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import APIURL from '../Helpers/environments';
+import UpdateCommentsReviews from './UpdateComments-Reviews';
+import DeleteCommentsReviews from './DeleteComments-Reviews';
 
 type Props = {
     sessionToken: string,
@@ -79,6 +81,8 @@ class CommentsReviews extends React.Component<Props, State> {
                     </FormGroup>
                     <br />
                     <Button id="navbtns" type="submit">Submit Comment / Review</Button>
+                    {/* <UpdateCommentsReviews sessionToken={this.props.sessionToken} setCommentReview={this.props.setCommentReview} />
+                    <DeleteCommentsReviews sessionToken={this.props.sessionToken} setCommentReview={this.props.setCommentReview} /> */}
                 </Form>
             </div>
         )

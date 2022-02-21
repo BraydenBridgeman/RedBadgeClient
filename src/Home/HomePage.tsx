@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBody, CardSubtitle, CardTitle, Row } from 'reactstrap';
+import { Card, CardBody, CardSubtitle, CardTitle, Row, Table } from 'reactstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
@@ -45,20 +45,53 @@ const HomePage = (props: any) => {
                             src={'http://img.omdbapi.com/?apikey=e0e1a4b&i=tt6856242'}
                         />
                     </Row>
-                    {props.createList.listName}
                     <br />
-                    {props.createList.movieTitle}
                     <br />
-                    {props.targetMovie.movieName}
                     <br />
-                    <img src={props.targetMovie.moviePoster} alt="Movie Poster" />
-                    {props.commentReview.username}
+                    <Table id="listID">
+                        <thead>
+                            <tr>
+                                <th id="tableHeader">
+                                    List Name
+                                </th>
+                                <th id="tableHeader">
+                                    Movie Title
+                                </th>
+                                <th id="tableHeader">
+                                    Movie Name
+                                </th>
+                                <th id="tableHeader">
+                                    Movie Poster
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th id="rowName" scope="row">{props.createList.listName}</th>
+                                <td id="rowName">{props.createList.movieTitle}</td>
+                                <td id="rowName">{props.targetMovie.movieName}</td>
+                                <td id="rowName"><img style={{ width: "100px" }} src={props.targetMovie.moviePoster} alt="Movie Poster" /></td>
+                            </tr>
+                        </tbody>
+                    </Table>
                     <br />
-                    {props.commentReview.comment}
                     <br />
-                    {props.commentReview.reviewRating}
-                    <br />
-                    {props.commentReview.reviewSection}
+                    <Card className="commentCard">
+                        <CardBody>
+                            <CardTitle className="commentHeader">
+                                <h1 id="reviewHeader">Comments / Review About this List</h1>
+                            </CardTitle>
+                            <Row>
+                                <h1 id="usernameHeader">{props.commentReview.username}</h1>
+                                <br />
+                                <p id="commentList">{props.commentReview.comment}</p>
+                                <br />
+                                <p id="commentList">{props.commentReview.reviewRating}</p>
+                                <br />
+                                <p id="commentList">{props.commentReview.reviewSection}</p>
+                            </Row>
+                        </CardBody>
+                    </Card>
                 </div>
             </Card>
         </div>
