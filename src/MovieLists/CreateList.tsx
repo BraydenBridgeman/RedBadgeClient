@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import APIURL from '../Helpers/environments';
-import UpdateList from './UpdateList';
+// import UpdateList from './UpdateList';
 
 type Props = {
     sessionToken: string,

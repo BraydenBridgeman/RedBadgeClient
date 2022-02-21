@@ -83,9 +83,9 @@ function App(this: any) {
       <SiteNav setSearchValue={setSearchValue} sessionToken={sessionToken} tokenUpdate={updateToken} logout={clearToken} />
       <Routes>
         <Route path="/" element={<HomePage targetMovie={targetMovie} createList={createList} commentReview={commentReview} movies={movies} />} />
-        <Route path="/Search" element={[<Search setSearchValue={setSearchValue} />, <MovieList setTargetMovie={setTargetMovie} movies={movieArr1} />]} />
+        <Route path="/Search" element={[<Search setSearchValue={setSearchValue} />, <MovieList sessionToken={sessionToken} setTargetMovie={setTargetMovie} movies={movieArr1} />]} />
         <Route path="/Register" element={<Auth tokenUpdate={updateToken} />} />
-        <Route path="/MyMovieList" element={[<CreateList setCreateList={setCreateList} createList={createList} sessionToken={sessionToken} />, <CommentsReviews setCommentReview={setCommentReview} sessionToken={sessionToken} />]} />
+        <Route path="/MyMovieList" element={[<CreateList setCreateList={setCreateList} sessionToken={sessionToken} createList={createList} />, <CommentsReviews setCommentReview={setCommentReview} sessionToken={sessionToken} />]} />
       </Routes>
       <Footer />
     </div>
