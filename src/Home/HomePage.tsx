@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardBody, CardSubtitle, CardTitle, Row, Table } from 'reactstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
+import APIURL from '../Helpers/environments';
 
 const HomePage = (props: any) => {
+
+    const [allLists, setAllLists] = useState([]);
+
+    useEffect(() => {
+        const getAllLists = () => {
+            if (props.token !== '') {
+                fetch(`${APIURL}/publicview`, {
+                    method: 'GET',
+                    headers: new Headers({
+                        'Content-Type' : 'application/json'
+                    })
+                })
+                .then(response => response.json())
+                .then(data => setAllLists(data))
+        }
+    }
+    getAllLists();
+}, [props.token])
 
     return (
         <div>
@@ -82,13 +101,12 @@ const HomePage = (props: any) => {
                                 <h1 id="reviewHeader">Comments / Review About this List</h1>
                             </CardTitle>
                             <Row>
-                                <h1 id="usernameHeader">{props.commentReview.username}</h1>
+                                <h1 id="usernameHeader">Username: <p id="usernameHeader2">{props.commentReview.username}</p></h1>
+                                <p id="commentList"><h2 id="commentHeader">COMMENT</h2> {props.commentReview.comment}</p>
                                 <br />
-                                <p id="commentList">{props.commentReview.comment}</p>
+                                <p id="commentList"><h2 id="commentHeader">REVIEW RATING</h2> {props.commentReview.reviewRating}</p>
                                 <br />
-                                <p id="commentList">{props.commentReview.reviewRating}</p>
-                                <br />
-                                <p id="commentList">{props.commentReview.reviewSection}</p>
+                                <p id="commentList"><h2 id="commentHeader">REVIEW SECTION</h2> {props.commentReview.reviewSection}</p>
                             </Row>
                         </CardBody>
                     </Card>

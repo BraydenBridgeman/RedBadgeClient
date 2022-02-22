@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button } from 'reactstrap';
+import * as React from 'react';
+import Button from '@mui/material/Button';
 
 import APIURL from '../Helpers/environments';
 
@@ -7,6 +7,8 @@ type Props = {
     sessionToken: string
     setCreateList: any
     createList: any
+    setUpdateList: any
+    updateList: any
 }
 
 type State = {
@@ -24,7 +26,7 @@ class UpdateList extends React.Component<Props, State> {
     }
 
     updateList = (props: any) => {
-        fetch(`${APIURL}/movieList/list/${props.createList.idNumber}`, {
+        fetch(`${APIURL}/movieList/list/${this.props.createList.idNumber}`, {
             method: "PUT",
             body: JSON.stringify({
                 userList: { listName: this.state.listName, movieTitle: this.state.movieTitle }
@@ -43,24 +45,18 @@ class UpdateList extends React.Component<Props, State> {
                     movieTitle: this.props.createList.movieTitle
                 })
                 alert(`Movie List Updated!`)
+            }).then(() => {
+                this.setState({
+                    listName: '',
+                    movieTitle: ''
+                })
             })
     }
 
     render() {
         return (
             <div>
-                <Button id="navbtns" type="submit"
-                    {...this.props.createList.map
-                        ((_userList: {
-                            listName: string;
-                            movieTitle: string;
-                        }, list: any) =>
-                            <div key={list}>
-                                {this.props.createList.listName}
-                                {this.props.createList.movieTitle}
-                            </div>
-                        )}
-                >Update List</Button>
+                <Button variant="contained" id="navbtns" type="submit" onClick={this.updateList}>Update List</Button>
             </div>
         )
     }

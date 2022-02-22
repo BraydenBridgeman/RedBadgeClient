@@ -1,5 +1,7 @@
-import React from 'react';
-import { Form, FormGroup, Input, Button, FormText, List, FormFeedback } from 'reactstrap';
+import * as React from 'react';
+import { Form, FormGroup, Input } from 'reactstrap';
+import Button from '@mui/material/Button';
+
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './RegisterUser.css';
@@ -92,7 +94,7 @@ class RegisterUser extends React.Component<Props, State> {
                             value={this.state.password}
                             name="password" />
                     </FormGroup>
-                    <Button id="navbtns" className="Register User" type="submit">Register User!</Button>
+                    <Button type="submit" id="navbtns" variant="contained">Register!</Button>
                 </Form>
             </div>
         )

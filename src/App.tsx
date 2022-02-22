@@ -12,7 +12,6 @@ import Search from './Components/Search';
 import CreateList from "./MovieLists/CreateList";
 import SiteNav from "./Auth/SiteNav";
 import Footer from "./Home/Footer";
-// import APIURL from './Helpers/environments';
 
 function App(this: any) {
   const [movies, setMovies] = useState<object[]>([]);
@@ -20,9 +19,13 @@ function App(this: any) {
   const [targetMovie, setTargetMovie] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [sessionToken, setSessionToken] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
   const [createList, setCreateList] = useState([]);
   const [commentReview, setCommentReview] = useState([]);
+  const [deleteList, setDeleteList] = useState('');
+  const [updateList, setUpdateList] = useState('');
+  const [updateComment, setUpdateComment] = useState('');
+  const [deleteComment, setDeleteComment] = useState('');
+
 
   // Session Token
   useEffect(() => {
@@ -82,10 +85,10 @@ function App(this: any) {
     <div className="App">
       <SiteNav setSearchValue={setSearchValue} sessionToken={sessionToken} tokenUpdate={updateToken} logout={clearToken} />
       <Routes>
-        <Route path="/" element={<HomePage targetMovie={targetMovie} createList={createList} commentReview={commentReview} movies={movies} />} />
+        <Route path="/" element={<HomePage setDeleteList={setDeleteList} targetMovie={targetMovie} createList={createList} commentReview={commentReview} movies={movies} />} />
         <Route path="/Search" element={[<Search setSearchValue={setSearchValue} />, <MovieList sessionToken={sessionToken} setTargetMovie={setTargetMovie} movies={movieArr1} />]} />
         <Route path="/Register" element={<Auth tokenUpdate={updateToken} />} />
-        <Route path="/MyMovieList" element={[<CreateList setCreateList={setCreateList} sessionToken={sessionToken} createList={createList} />, <CommentsReviews setCommentReview={setCommentReview} sessionToken={sessionToken} />]} />
+        <Route path="/MyMovieList" element={[<CreateList deleteList={deleteList} setCreateList={setCreateList} setUpdateList={setUpdateList} updateList={updateList} sessionToken={sessionToken} createList={createList} setDeleteList={setDeleteList} />, <CommentsReviews setCommentReview={setCommentReview} setUpdateComment={setUpdateComment} updateComment={updateComment} deleteComment={deleteComment} setDeleteComment={setDeleteComment} sessionToken={sessionToken} />]} />
       </Routes>
       <Footer />
     </div>

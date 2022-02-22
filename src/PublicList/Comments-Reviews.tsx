@@ -1,5 +1,6 @@
-import React from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import * as React from 'react';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
+import Button from '@mui/material/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import APIURL from '../Helpers/environments';
 import UpdateCommentsReviews from './UpdateComments-Reviews';
@@ -7,7 +8,11 @@ import DeleteCommentsReviews from './DeleteComments-Reviews';
 
 type Props = {
     sessionToken: string,
-    setCommentReview: any
+    setCommentReview: any,
+    updateComment: any,
+    setUpdateComment: any,
+    deleteComment: any,
+    setDeleteComment: any
 }
 
 type State = {
@@ -28,7 +33,6 @@ class CommentsReviews extends React.Component<Props, State> {
         }
     }
 
-
     handleSubmit = () => {
         fetch(`${APIURL}/commentReview/comment-review`, {
             method: 'POST',
@@ -47,7 +51,13 @@ class CommentsReviews extends React.Component<Props, State> {
                     reviewRating: this.state.reviewRating,
                     reviewSection: this.state.reviewSection
                 })
-                alert(`Comment and Review Posted!`)
+                alert(`Comment and review posted!`)
+            }).then(() => {
+                this.setState({
+                    comment: '',
+                    reviewRating: 0,
+                    reviewSection: ''
+                })
             })
     }
 
@@ -80,10 +90,15 @@ class CommentsReviews extends React.Component<Props, State> {
                         <Input type="textarea" name="reviewSection" value={this.state.reviewSection} onChange={(e) => this.setState({ reviewSection: e.target.value })} />
                     </FormGroup>
                     <br />
-                    <Button id="navbtns" type="submit">Submit Comment / Review</Button>
-                    {/* <UpdateCommentsReviews sessionToken={this.props.sessionToken} setCommentReview={this.props.setCommentReview} />
-                    <DeleteCommentsReviews sessionToken={this.props.sessionToken} setCommentReview={this.props.setCommentReview} /> */}
+                    <Button variant="contained" id="navbtns" type="submit">Submit Comment / Review</Button>
+                    <br />
+                    <br />
+                    <UpdateCommentsReviews sessionToken={this.props.sessionToken} setCommentReview={this.props.setCommentReview} updateComment={this.props.updateComment} setUpdateComment={this.props.setUpdateComment} />
+                    <br />
+                    <DeleteCommentsReviews sessionToken={this.props.sessionToken} setCommentReview={this.props.setCommentReview} setDeleteComment={this.props.setDeleteComment} deleteComment={this.props.deleteComment} />
                 </Form>
+                <br />
+                <br />
             </div>
         )
     }

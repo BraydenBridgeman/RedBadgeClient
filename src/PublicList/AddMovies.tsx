@@ -1,12 +1,13 @@
-import React from 'react';
-import { Button } from 'reactstrap';
+import * as React from 'react';
+import Button from '@mui/material/Button';
 import APIURL from '../Helpers/environments';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 type Props = {
     sessionToken: string,
     setTargetMovie: any,
-    movies: any
+    movies: any,
+    allMovies: any
 }
 
 type State = {
@@ -57,13 +58,13 @@ class AddMovies extends React.Component<Props, State> {
                     shortPlot: this.state.shortPlot,
                     moviePoster: this.state.moviePoster
                 })
-                alert(`Movie Added to List!`)
+                alert(`Movie added to list!`)
             })
     }
 
     render() {
         return (
-            <Button id="navbtns" onClick={e => { e.preventDefault(); this.addMoviesToList(); }}>
+            <Button variant="contained" id="navbtns" onClick={e => { e.preventDefault(); this.addMoviesToList(); }}>
                 Add Movie to My List
             </Button>
         )

@@ -1,7 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import logo from "../Assets/movie-reel-logo.png";
 
-import { Navbar, NavbarBrand, Nav, NavItem, Button } from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavItem } from 'reactstrap';
+import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 
 import './SiteNav.css';
@@ -104,22 +105,22 @@ class SiteNav extends React.Component<Props, State> {
                     <Nav className='ml-auto' navbar>
                         <NavItem id="navitem">
                             <Link to="/Search">
-                                <Button onClick={this.setSearchOn} id="navbtns">Search</Button>
+                                <Button variant="outlined" onClick={this.setSearchOn} id="navbtns">Search</Button>
                             </Link>
                         </NavItem>
                         <Link to="/MyMovieList">
                             <NavItem id="navitem">
-                                <Button id="navbtns" onClick={() => { this.listOn() }}>My Movie Lists</Button>
+                                <Button variant="outlined" id="navbtns" onClick={() => { this.listOn() }}>My Movie Lists</Button>
                             </NavItem>
                         </Link>
                         <Link to="/Register">
                             <NavItem id="navitem">
-                                <Button id="navbtns" onClick={() => { this.loginOn() }}>Login / Register</Button>
+                                <Button variant="outlined" id="navbtns" onClick={() => { this.loginOn() }}>Login / Register</Button>
                             </NavItem>
                             <br />
                             {this.props.sessionToken ?
                                 <NavItem id="navitem">
-                                    <Button id="navbtns" onClick={this.props.logout}>Logout</Button>
+                                    <Button variant="outlined" id="navbtns" onClick={this.props.logout}>Logout</Button>
                                 </NavItem>
                                 : null}
                         </Link>

@@ -11,5 +11,21 @@
 }
 
 .movieListCard {
-  margin-top: 30px;
+  margin-top: 50px;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.searchMovieList {
+  display: block;
+}
+
+.containerMovieList {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(227, 227, 227, 1) 50%,
+    rgba(172, 172, 172, 1) 100%
+  );
 }

@@ -1,11 +1,13 @@
-import React from 'react';
-import { Button } from 'reactstrap';
+import * as React from 'react';
+import Button from '@mui/material/Button';
 
 import APIURL from '../Helpers/environments';
 
 type Props = {
     sessionToken: string,
-    setCommentReview: any
+    setCommentReview: any,
+    setDeleteComment: any,
+    deleteComment: any
 }
 
 type State = {
@@ -25,7 +27,8 @@ class DeleteCommentsReviews extends React.Component<Props, State> {
     }
 
     deleteComment = (props: any) => {
-        fetch(`${APIURL}/commentReview/comment-review/${this.props.setCommentReview.idNumber}`, {
+        console.log(this.props.setCommentReview.idNumber);
+        fetch(`${APIURL}/commentReview/${this.props.setCommentReview.idNumber}`, {
             method: "DELETE",
             body: JSON.stringify({
                 commentReview: {
@@ -33,38 +36,26 @@ class DeleteCommentsReviews extends React.Component<Props, State> {
                 }
             }),
             headers: new Headers({
-                'Content-Type' : 'application/JSON',
-                'Authorization' : `Bearer ${this.props.sessionToken}`
+                'Content-Type': 'application/JSON',
+                'Authorization': `Bearer ${this.props.sessionToken}`
             })
         }).then((res) => res.json())
-        .then((data) => {
-            console.log(data);
-            this.props.setCommentReview(data);
-            this.setState({
-                comment: this.state.comment,
-                reviewRating: this.state.reviewRating,
-                reviewSection: this.state.reviewSection
+            .then((data) => {
+                console.log(data);
+                this.props.setCommentReview(data);
+                this.setState({
+                    comment: this.state.comment,
+                    reviewRating: this.state.reviewRating,
+                    reviewSection: this.state.reviewSection
+                })
+                alert(`Only admins can delete comments!`)
             })
-            alert(`Comment and Review Deleted!`)
-        })
     }
 
     render() {
         return (
             <div>
-                <Button id="navbtns" type="submit"
-                {...this.props.setCommentReview.map
-                ((_commentList: {
-                    comment: string;
-                    reviewRating: number | string;
-                    reviewSection: string;
-                }, aList: any) =>
-                <div key={aList}>
-                    {this.props.setCommentReview.comment}
-                    {this.props.setCommentReview.reviewRating}
-                    {this.props.setCommentReview.reviewSection}
-                    </div>
-                )}>Delete Comment / Review</Button>
+                <Button variant="contained" id="navbtns" type="submit" onClick={this.deleteComment}>Delete Comment / Review</Button>
             </div>
         )
     }

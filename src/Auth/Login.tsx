@@ -1,5 +1,6 @@
-import React from 'react';
-import { Form, FormGroup, Input, Button } from 'reactstrap';
+import * as React from 'react';
+import { Form, FormGroup, Input } from 'reactstrap';
+import Button from '@mui/material/Button';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
@@ -88,7 +89,7 @@ class Login extends React.Component<Props, State> {
                             onChange={(e) => this.setState({ password: e.target.value })}
                             value={this.state.password} />
                     </FormGroup>
-                    <Button id="navbtns" type="submit">Login!</Button>
+                    <Button type="submit" id="navbtns" variant="contained">Login!</Button>
                 </Form>
             </div>
         )

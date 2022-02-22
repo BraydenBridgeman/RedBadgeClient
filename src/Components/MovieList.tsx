@@ -29,7 +29,7 @@ const MovieList = (props: any) => {
     return (
         <div className="searchMovieList">
             <Row>
-                <Container className="container">
+                <Container className="containerMovieList">
                     <Card className="movieListCard">
                         {props.movies.map
                             ((movie: {
@@ -45,7 +45,7 @@ const MovieList = (props: any) => {
                                     <h4>{movie.Year}</h4>
                                     <p id="genre"><span>{movie.Genre}</span></p>
                                     <p id="plot"><span>{movie.Plot}</span></p>
-                                    <AddMovies setTargetMovie={props.setTargetMovie} sessionToken={props.sessionToken} movies={movie} />
+                                    <AddMovies allMovies={allMovies} setTargetMovie={props.setTargetMovie} sessionToken={props.sessionToken} movies={movie} />
                                     <br />
                                     <br />
                                 </div>

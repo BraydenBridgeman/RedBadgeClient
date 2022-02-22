@@ -1,14 +1,21 @@
-import React from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import * as React from 'react';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
+import Button from '@mui/material/Button';
 
 import APIURL from '../Helpers/environments';
 import UpdateList from './UpdateList';
 import DeleteList from './DeleteList';
 
+import './CreateList.css';
+
 type Props = {
     sessionToken: string,
     setCreateList: any,
-    createList: any
+    createList: any,
+    updateList: any,
+    setUpdateList: any,
+    deleteList: any,
+    setDeleteList: any
 }
 
 type State = {
@@ -37,19 +44,23 @@ class CreateList extends React.Component<Props, State> {
             .then((data) => {
                 console.log(data);
                 this.props.setCreateList(data);
-                console.log(data.movieTitle);
                 this.setState({
                     listName: this.state.listName,
                     movieTitle: this.state.movieTitle
                 })
-                alert(`Movie List Created!`)
+                alert(`Movie list created!`)
+            }).then(() => {
+                this.setState({
+                    listName: "",
+                    movieTitle: ""
+                })
             })
     }
 
     render() {
         return (
             <div className="comments-review">
-                <h1>Create your Movie List</h1>
+                <h1 id="movieListTitle">Create your Movie List</h1>
                 <Form inline onSubmit={(e) => { e.preventDefault(); this.handleSubmit(); }} className="listForm">
                     <FormGroup>
                         <Label htmlFor="listname">List Name</Label>
@@ -66,9 +77,12 @@ class CreateList extends React.Component<Props, State> {
                             placeholder="Add your watchlist of movie titles here" />
                     </FormGroup>
                     <br />
-                    <Button id="navbtns" type="submit">Create List</Button>
-                    {/* <UpdateList sessionToken={this.props.sessionToken} createList={this.props.createList} setCreateList={this.props.setCreateList} />
-                    <DeleteList sessionToken={this.props.sessionToken} createList={this.props.createList} setCreateList={this.props.setCreateList} /> */}
+                    <Button type="submit" id="navbtns" variant="contained">Create List</Button>
+                    <br />
+                    <br />
+                    <UpdateList sessionToken={this.props.sessionToken} createList={this.props.createList} setCreateList={this.props.setCreateList} setUpdateList={this.props.setUpdateList} updateList={this.props.updateList} />
+                    <br />
+                    <DeleteList setDeleteList={this.props.setDeleteList} sessionToken={this.props.sessionToken} createList={this.props.createList} setCreateList={this.props.setCreateList} deleteList={this.props.deleteList} />
                 </Form>
                 <br />
                 <br />

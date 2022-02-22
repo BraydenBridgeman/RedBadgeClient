@@ -67,13 +67,28 @@
 }
 
 #reviewHeader {
-
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #usernameHeader {
+  color: red;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  padding-bottom: 50px;
+}
 
+#usernameHeader2 {
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
 }
 
 #commentList {
+  color:rgba(116, 116, 116, 1);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2em;
+}
 
+#commentHeader {
+  color: red;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }

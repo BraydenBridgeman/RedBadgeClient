@@ -1,10 +1,12 @@
-import React from 'react';
-import { Button } from 'reactstrap';
+import * as React from 'react';
+import Button from '@mui/material/Button';
 import APIURL from '../Helpers/environments';
 
 type Props = {
     sessionToken: string,
-    setCommentReview: any
+    setCommentReview: any,
+    updateComment: any,
+    setUpdateComment: any
 }
 
 type State = {
@@ -44,26 +46,20 @@ class UpdateCommentsReviews extends React.Component<Props, State> {
                     reviewRating: this.state.reviewRating,
                     reviewSection: this.state.reviewSection
                 })
-                alert(`Comment and Review Updated!`)
+                alert(`Comment and review has been updated!`)
+            }).then(() => {
+                this.setState({
+                    comment: '',
+                    reviewRating: 0,
+                    reviewSection: ''
+                })
             })
     }
 
     render() {
         return (
             <div>
-                <Button id="navbtns" type="submit"
-                    {...this.props.setCommentReview.map
-                        ((_commentList: {
-                            comment: string;
-                            reviewRating: number | string;
-                            reviewSection: string;
-                        }, aList: any) =>
-                            <div key={aList}>
-                                {this.props.setCommentReview.comment}
-                                {this.props.setCommentReview.reviewRating}
-                                {this.props.setCommentReview.reviewSection}
-                            </div>
-                        )}>Update Comment / Review</Button>
+                <Button variant="contained" id="navbtns" type="submit" onClick={this.updateComment}>Update Comment / Review</Button>
             </div>
         )
     }
