@@ -43,24 +43,29 @@ class RegisterUser extends React.Component<Props, State> {
     handleSubmit = (event: any) => {
         console.log(this.state.email, this.state.username, this.state.password, this.state.isAdmin)
         event.preventDefault();
-        fetch(`${APIURL}/userlogin/register`, {
-            method: "POST",
-            body: JSON.stringify({ user: { email: this.state.email, username: this.state.username, password: this.state.password, isAdmin: this.state.isAdmin } }),
-            headers: new Headers({
-                "Content-Type": "application/json",
-            }),
-        }).then(
-            (response) => response.json()
-        ).then((data) => {
-            if (typeof (data.sessionToken) !== 'string') {
-                this.props.update(data.sessionToken);
-                alert(`Email already registered.`)
-            } else {
-                this.props.update(data.sessionToken);
-                window.location.href = '/'
-                alert(`Username and Email has been registered!`)
-            }
-        })
+        if (this.state.password.length >= 6) {
+            fetch(`${APIURL}/userlogin/register`, {
+                method: "POST",
+                body: JSON.stringify({ user: { email: this.state.email, username: this.state.username, password: this.state.password, isAdmin: this.state.isAdmin } }),
+                headers: new Headers({
+                    "Content-Type": "application/json",
+                }),
+            }).then(
+                (response) => response.json()
+            ).then((data) => {
+                if (typeof (data.sessionToken) !== 'string') {
+                    this.props.update(data.sessionToken);
+                    alert(`Email already registered.`)
+                } else {
+                    this.props.update(data.sessionToken);
+                    window.location.href = '/'
+                    alert(`Username and Email has been registered!`)
+                }
+            })
+
+        } else {
+            alert(`Password must be at least 6 characters (${this.state.password.length}).`)
+        }
     };
 
     render() {
