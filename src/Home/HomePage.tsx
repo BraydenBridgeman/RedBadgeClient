@@ -4,6 +4,7 @@ import { Card, CardBody, CardSubtitle, CardTitle, Row, Table } from 'reactstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 import APIURL from '../Helpers/environments';
+import DeleteList from '../MovieLists/DeleteList';
 
 const HomePage = (props: any) => {
 
@@ -23,7 +24,9 @@ const HomePage = (props: any) => {
 //         }
 //     }
 //     getAllLists();
+//     console.log(getAllLists());
 // }, [props.token])
+
 
     return (
         <div>
@@ -91,6 +94,7 @@ const HomePage = (props: any) => {
                                 <td id="rowName">{props.targetMovie.movieName}</td>
                                 <td id="rowName"><img style={{ width: "100px" }} src={props.targetMovie.moviePoster} alt="" /></td>
                             </tr>
+                            {/* <DeleteList sessionToken={props.sessionToken} setCreateList={props.setCreateList} createList={props.createList} deleteList={props.deleteList} setDeleteList={props.setDeleteList} /> */}
                         </tbody>
                     </Table>
                     <br />
