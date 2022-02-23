@@ -7,23 +7,23 @@ import APIURL from '../Helpers/environments';
 
 const HomePage = (props: any) => {
 
-    const [allLists, setAllLists] = useState([]);
+//     const [allLists, setAllLists] = useState([]);
 
-    useEffect(() => {
-        const getAllLists = () => {
-            if (props.token !== '') {
-                fetch(`${APIURL}/publicview`, {
-                    method: 'GET',
-                    headers: new Headers({
-                        'Content-Type' : 'application/json'
-                    })
-                })
-                .then(response => response.json())
-                .then(data => setAllLists(data))
-        }
-    }
-    getAllLists();
-}, [props.token])
+//     useEffect(() => {
+//         const getAllLists = () => {
+//             if (props.token !== '') {
+//                 fetch(`${APIURL}/publicview`, {
+//                     method: 'GET',
+//                     headers: new Headers({
+//                         'Content-Type' : 'application/json'
+//                     })
+//                 })
+//                 .then(response => response.json())
+//                 .then(data => setAllLists(data))
+//         }
+//     }
+//     getAllLists();
+// }, [props.token])
 
     return (
         <div>
