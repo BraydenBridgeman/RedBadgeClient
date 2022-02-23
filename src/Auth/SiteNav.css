@@ -1,6 +1,4 @@
 .navbar {
-  padding-bottom: 25px;
-  padding-top: 25px;
   background: rgb(0, 0, 0);
   background: linear-gradient(
     180deg,
@@ -40,4 +38,17 @@
 
 #navbtns:hover {
   background-color: #616161;
+}
+
+#navbutton {
+  font-size: 12px;
+  margin-top: 25px;
+  color: black;
+  background-color: #acacac;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+#navbutton:hover {
+  background-color: #ffffff;
 }

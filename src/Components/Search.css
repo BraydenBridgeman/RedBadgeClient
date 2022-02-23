@@ -1,11 +1,10 @@
-input.form-control {
+#fullWidth {
   background-color: white;
   align-items: center;
   text-align: center;
   margin: auto;
   font-family: Arial, Arial, Helvetica, sans-serif;
   padding-top: 25px;
-  padding-bottom: 25px;
   padding-right: 25px;
   padding-left: 25px;
 }

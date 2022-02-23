@@ -1,6 +1,9 @@
 import * as React from 'react';
-import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Form } from 'reactstrap';
 import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
 
 import APIURL from '../Helpers/environments';
 import UpdateList from './UpdateList';
@@ -61,21 +64,29 @@ class CreateList extends React.Component<Props, State> {
         return (
             <div className="comments-review">
                 <h1 id="movieListTitle">Create your Movie List</h1>
+                <br />
+                <br />
                 <Form inline onSubmit={(e) => { e.preventDefault(); this.handleSubmit(); }} className="listForm">
-                    <FormGroup>
-                        <Label htmlFor="listname">List Name</Label>
-                        <Input type="textarea" name="listname" value={this.state.listName}
+                    <FormControl>
+                        <InputLabel htmlFor="component-outlined">List Name</InputLabel>
+                        <Input id="outlined-multiline-flexible"
+                            multiline
+                            maxRows={4} name="listname" placeholder="User List Name" value={this.state.listName}
                             onChange={(e) => this.setState({
                                 listName: e.target.value
-                            })}
-                            placeholder="User List Name" />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor="movieTitle">Movie Titles</Label>
-                        <Input type="textarea" name="movieTitle" value={this.state.movieTitle}
+                            })} />
+                    </FormControl>
+                    <br />
+                    <br />
+                    <FormControl>
+                        <InputLabel htmlFor="component-outlined">Movie Titles</InputLabel>
+                        <Input type="textarea" id="outlined-multiline-flexible"
+                            multiline
+                            maxRows={4} value={this.state.movieTitle}
                             onChange={(e) => this.setState({ movieTitle: e.target.value })}
-                            placeholder="Add your watchlist of movie titles here" />
-                    </FormGroup>
+                            placeholder="Watchlist" />
+                    </FormControl>
+                    <br />
                     <br />
                     <Button type="submit" id="navbtns" variant="contained">Create List</Button>
                     <br />

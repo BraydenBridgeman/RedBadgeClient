@@ -1,6 +1,11 @@
 import * as React from 'react';
-import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Form } from 'reactstrap';
 import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import TextField from '@mui/material/TextField';
+import FormHelperText from '@mui/material/FormHelperText';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import APIURL from '../Helpers/environments';
 import UpdateCommentsReviews from './UpdateComments-Reviews';
@@ -64,31 +69,45 @@ class CommentsReviews extends React.Component<Props, State> {
     render() {
         return (
             <div className="comments-review">
-                <h1>Comment and Review This List</h1>
+                <h1 id="movieListTitle">Comment and Review This List</h1>
                 <Form inline onSubmit={e => { e.preventDefault(); this.handleSubmit(); }}>
-                    <FormGroup>
-                        <Label htmlFor="username">Username</Label>
-                        <Input type="textarea" name="username" value={this.state.username} onChange={(e) => this.setState({ username: e.target.value })} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor="comment">Comment</Label>
-                        <Input type="textarea"
-                            name="comment" value={this.state.comment} onChange={(e) => this.setState({ comment: e.target.value })} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor="reviewRating">Review Rating "0-5"</Label>
-                        <Input type="select" name="select" onChange={(e) => this.setState({ reviewRating: e.target.value })}>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </Input>
-                    </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor="reviewSection">Review Section</Label>
-                        <Input type="textarea" name="reviewSection" value={this.state.reviewSection} onChange={(e) => this.setState({ reviewSection: e.target.value })} />
-                    </FormGroup>
+                    <br />
+                    <br />
+                    <br />
+                    <FormControl>
+                        <InputLabel htmlFor="component-outlined">Username</InputLabel>
+                        <Input type="textarea" id="outlined-multiline-flexible"
+                            multiline
+                            maxRows={4} name="username" placeholder="Username" value={this.state.username} onChange={(e) => this.setState({ username: e.target.value })} />
+                    </FormControl>
+                    <br />
+                    <br />
+                    <br />
+                    <FormControl>
+                        <InputLabel htmlFor="component-outlined">Comment</InputLabel>
+                        <Input type="textarea" id="outlined-multiline-flexible"
+                            multiline
+                            maxRows={4}
+                            name="comment" placeholder="Comment" value={this.state.comment} onChange={(e) => this.setState({ comment: e.target.value })} />
+                    </FormControl>
+                    <br />
+                    <br />
+                    <br />
+                    <FormControl>
+                        <InputLabel htmlFor="component-outlined"></InputLabel>
+                        <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} id="filled-number" label="Number Rating of List" type="number" onChange={(e) => this.setState({ reviewRating: e.target.value })}>
+                        </TextField>
+                        <FormHelperText id="component-error-text">We recommend rating between 1-5</FormHelperText>
+                    </FormControl>
+                    <br />
+                    <br />
+                    <FormControl>
+                        <InputLabel htmlFor="component-outlined">Review Section</InputLabel>
+                        <Input type="textarea" id="outlined-multiline-flexible"
+                            multiline
+                            maxRows={4} name="reviewSection" placeholder="Short Review" value={this.state.reviewSection} onChange={(e) => this.setState({ reviewSection: e.target.value })} />
+                    </FormControl>
+                    <br />
                     <br />
                     <Button variant="contained" id="navbtns" type="submit">Submit Comment / Review</Button>
                     <br />

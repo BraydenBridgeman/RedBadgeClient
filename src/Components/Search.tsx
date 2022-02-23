@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from 'reactstrap';
+import TextField from '@mui/material/TextField';
 
 import './Search.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,11 +7,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Search = (props: any) => {
     return (
         <div className="container searchBar">
-            <Input className="form-control"
+            <br />
+            <TextField fullWidth label="Search Movies Here..." id="fullWidth"
                 value={props.value}
                 onChange={(e) => props.setSearchValue(e.target.value)}
-                placeholder="Search movies here...">
-            </Input>
+                placeholder="Find A Movie">
+            </TextField>
         </div>
     )
 }

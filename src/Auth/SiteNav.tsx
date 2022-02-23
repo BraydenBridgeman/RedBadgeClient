@@ -105,22 +105,22 @@ class SiteNav extends React.Component<Props, State> {
                     <Nav className='ml-auto' navbar>
                         <NavItem id="navitem">
                             <Link to="/Search">
-                                <Button variant="outlined" onClick={this.setSearchOn} id="navbtns">Search</Button>
+                                <Button variant="outlined" id="navbutton" onClick={this.setSearchOn}>Search</Button>
                             </Link>
                         </NavItem>
                         <Link to="/MyMovieList">
                             <NavItem id="navitem">
-                                <Button variant="outlined" id="navbtns" onClick={() => { this.listOn() }}>My Movie Lists</Button>
+                                <Button variant="outlined" id="navbutton" onClick={() => { this.listOn() }}>My Movie Lists</Button>
                             </NavItem>
                         </Link>
                         <Link to="/Register">
                             <NavItem id="navitem">
-                                <Button variant="outlined" id="navbtns" onClick={() => { this.loginOn() }}>Login / Register</Button>
+                                <Button variant="outlined" id="navbutton" onClick={() => { this.loginOn() }}>Login / Register</Button>
                             </NavItem>
                             <br />
                             {this.props.sessionToken ?
                                 <NavItem id="navitem">
-                                    <Button variant="outlined" id="navbtns" onClick={this.props.logout}>Logout</Button>
+                                    <Button variant="outlined" id="navbutton" onClick={this.props.logout}>Logout</Button>
                                 </NavItem>
                                 : null}
                         </Link>
