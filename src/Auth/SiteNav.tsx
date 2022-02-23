@@ -117,7 +117,6 @@ class SiteNav extends React.Component<Props, State> {
                             <NavItem id="navitem">
                                 <Button variant="outlined" id="navbutton" onClick={() => { this.loginOn() }}>Login / Register</Button>
                             </NavItem>
-                            <br />
                             {this.props.sessionToken ?
                                 <NavItem id="navitem">
                                     <Button variant="outlined" id="navbutton" onClick={this.props.logout}>Logout</Button>
