@@ -89,7 +89,7 @@ const HomePage = (props: any) => {
                                 <th id="rowName" scope="row">{props.createList.listName}</th>
                                 <td id="rowName">{props.createList.movieTitle}</td>
                                 <td id="rowName">{props.targetMovie.movieName}</td>
-                                <td id="rowName"><img style={{ width: "100px" }} src={props.targetMovie.moviePoster} alt="Movie Poster" /></td>
+                                <td id="rowName"><img style={{ width: "100px" }} src={props.targetMovie.moviePoster} alt="" /></td>
                             </tr>
                         </tbody>
                     </Table>
